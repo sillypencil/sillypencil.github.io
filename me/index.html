@@ -6,18 +6,26 @@
 </head>
 <style type="text/css">
 *{margin: 0;}
-#main{width:100%; height: 100%; overflow: hidden; position: relative;}
-#main_container{position: absolute; top: 0; left: 0; width: 100%; height: auto; background: #336633;}
+#main{width:100%; height: 100%; overflow: hidden; position: relative; background: -webkit-linear-gradient( #336633, #506e72);background: -o-linear-gradient( #336633, #506e72);background: linear-gradient( #336633, #506e72);}
+#main_container{position: absolute; top: 0; left: 0; width: 100%; height: auto;}
 #main .block{width:100%; height:100%; position: relative;}
-#particles{background: #336633;}
 /*sidebar*/
-#sidebar{width:100px; height: 100%; position: fixed; right:0px; top:0px; display: none;}
+#sidebar{width:100px; height: 100%; position: fixed; right:0px; top:0px;}
 #time_line{content: ''; width: 6px; height: 0px; background: #fff; position: absolute; left: 47px; top:35px; z-index: -1;}
 #sidebar::after{content: ''; width: 100%; height: 100%; opacity: 0.5; position: absolute; left: 0; top:0 ; z-index: -1;}
 .side-tag{ margin: 25px auto; position: relative; padding-left: 40px;}
-.side-tag-dot{width: 16px; height: 16px; border-radius: 20px; border: 2px solid #003366; cursor: pointer;}
-.tag-name{display: block; width: 100px; height:36px; line-height: 35px; font-size: 20px; background: #151515; border-radius: 4px 0 0 4px; position: absolute; left: -100px; top: 10px; text-decoration: none; color: #fbfbfb; text-align: center; opacity: 0}
-.tag-name:after{content: ''; width: 0; height: 0; overflow: hidden;border-right: 18px transparent solid; border-top: 18px transparent solid; border-bottom: 18px solid transparent; border-left: 18px solid #222; position: absolute; right: -36px; top:0;}
+.side-tag-dot{width: 16px; height: 16px; border-radius: 20px; border: 2px solid #204a22; cursor: pointer;}
+.tag-name{display: block; width: 100px; height:36px; line-height: 35px; font-size: 20px; background: #204a22; border-radius: 4px 0 0 4px; position: absolute; left: -100px; top: 10px; text-decoration: none; color: #fbfbfb; text-align: center; opacity: 0}
+.tag-name-after{width: 0; height: 0; overflow: hidden;border-right: 18px transparent solid; border-top: 18px transparent solid; border-bottom: 18px solid transparent; border-left: 18px solid #1e4f20; position: absolute; right: -36px; top:0;}
+
+/*contact me*/
+#contact{position: fixed; width: 180px; height: 350px; top: 50%; margin-top: -175px; background:-webkit-linear-gradient(#336633, #4f6d70 70%, #4f6d70); border-radius: 0 5px 0 0; left: -183px; box-shadow: 0 0 5px #eee; color: #85de85; font-size: 18px;}
+#contact_info{margin: 15px;}
+#contact_info p{margin: 5px;}
+#contact_info a{text-decoration: none; color:#85de85;}
+#contact_info a:hover{text-decoration: underline;}
+#contact_button{width: 40px; height: 100px; background:#4f6d70; position: absolute; right: -40px; bottom: 0; border-radius: 0 5px 5px 0; padding-top: 10px; box-shadow: 2px 0 3px #eee;}
+#contact_button p{height: 30px; line-height: 30px; text-align: center;}
 /*画头像*/
 #head_container{width: 250px; height: 250px; background-color: #126950; position: absolute;top:70px; left:50%; margin-left: -125px; border-radius: 200px;}
 #head_container *{position: absolute;}
@@ -159,30 +167,73 @@
 #hair_6::after{content: ''; display: block; position: absolute; width: 50px; height: 50px; border-radius: 24px/17px; background-color: #126950; top: 0px; right: 2px;}
 /*基本个人信息*/
 #basic_info{width: 100%; height: 100px; position: absolute;top:350px;}
-.slide-box{width: 250px; height: 40px;text-align: center; margin: 0 auto 5px; position: relative; color:#111; font-size: 22px; text-shadow:1px 1px #719671;}
+.slide-box{width: 400px; height: 40px;text-align: center; margin: 0 auto 5px; position: relative; color:#111; text-shadow:1px 1px #719671;}
 /*.slide-box:before{content: ''; display: block; width: 100%; height: 100%; background-color: #143b14;opacity: 0.1; position: absolute; top: 0px; left: 0px;}*/
-.slide-box-bg{width: 100%; height: 100%; background-color: #155D15;opacity: 0.1; position: absolute; top: 0px; left: 0px;}
-.left-border{width: 4px; height: 100%; position: absolute; background-color: #143b14; top:0; left: 0; opacity: 0;}
-.lslide-box:hover .left-border{height: 100%}
-.right-border{width: 4px; height: 100%; position: absolute; right: 0px; bottom: 0%; background-color: #143b14; opacity: 0;}
-.top-border{width: 100%; height: 4px; position: absolute; right: 0; top: 0px; background-color: #143b14; opacity: 0;}
-.bottom-border{width:100%; height: 4px; position: absolute; left: 0%; bottom: 0px; background-color: #143b14; opacity: 0;}
-.block-word{display: inline-block; position: relative;width: 30px; height: 30px; left: 0px; top:5px; margin: 0px 2px;}
+.slide-box-bg{width: 100%; height: 100%; background-color: #155D15;opacity: 0.2; position: absolute; top: 0px; left: 0px;}
+.left-border{width: 4px; height: 0; position: absolute; background-color: #143b14; top:0; left: 0;}
+.right-border{width: 4px; height: 0; position: absolute; right: 0px; bottom: 0%; background-color: #143b14;}
+.top-border{width: 0; height: 4px; position: absolute; right: 0; top: 0px; background-color: #143b14;}
+.bottom-border{width:0; height: 4px; position: absolute; left: 0%; bottom: 0px; background-color: #143b14;}
+.block-word,.anti-block-word{display: inline-block; position: relative;width: 30px; height: 30px; left: 0px; top:5px; margin: 0px 2px; font-size: 22px;}
+.tiny-block-word,.anti-tiny-block-word{display: inline-block; position: relative;width: 20px; height: 20px; left: 0px; top:10px; margin: 0px -1px; font-size: 14px;}
 /*.block-word:hover{animation:downturning 5s;}*/
-.block-word>span{display: block; width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; line-height: 30px; border-radius: 100%;}
-.block-word>span.word-bg{content: ''; background-image: -webkit-linear-gradient(90deg, #0E290E , #155D15); opacity: 0}
+.block-word>span,.anti-block-word>span{display: block; width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; line-height: 30px; border-radius: 100%;}
+.tiny-block-word>span,.anti-tiny-block-word>span{display: block; width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; line-height: 20px; border-radius: 100%;}
+.block-word>span.word-bg,.anti-block-word>span.word-bg{content: ''; background-image: -webkit-linear-gradient(90deg, #0E290E , #155D15); opacity: 0}
+.tiny-block-word>span.word-bg,.anti-tiny-block-word>span.word-bg{content: ''; background-image: -webkit-linear-gradient(90deg, #0E290E , #155D15); opacity: 0}
 @keyframes clockwise{0%{transform:rotate(0deg);} 40%{transform:rotate(400deg);} 70%{transform:rotate(340deg);} 100%{transform:rotate(360deg);}}
 @keyframes anti-clockwise{0%{transform:rotate(0deg);} 40%{transform:rotate(-400deg);} 70%{transform:rotate(-340deg);} 100%{transform:rotate(-360deg);}}
 @keyframes upturning{0%{transform:rotateX(0deg);} 40%{transform:rotateX(400deg);} 80%{transform:rotateX(340deg);} 100%{transform:rotateX(360deg);}}
 @keyframes downturning{0%{transform:rotateX(0deg);} 40%{transform:rotateX(-400deg);} 80%{transform:rotateX(-340deg);} 100%{transform:rotateX(-360deg);}}
-@keyframes left-border-in{0%{height: 0; top:-200%} 100%{height: 100%; top:0}}
+@keyframes leftturning{0%{transform:rotateY(0deg);} 40%{transform:rotateY(-400deg);} 80%{transform:rotateY(-340deg);} 100%{transform:rotateY(-360deg);}}
+@keyframes rightturning{0%{transform:rotateY(0deg);} 40%{transform:rotateY(400deg);} 80%{transform:rotateY(340deg);} 100%{transform:rotateY(360deg);}}
+@keyframes clockwise-out{0%{transform:rotate(0deg);} 40%{transform:rotate(400deg);} 70%{transform:rotate(340deg);} 100%{transform:rotate(360deg);}}
+@keyframes anti-clockwise-out{0%{transform:rotate(0deg);} 40%{transform:rotate(-400deg);} 70%{transform:rotate(-340deg);} 100%{transform:rotate(-360deg);}}
+@keyframes upturning-out{0%{transform:rotateX(0deg);} 40%{transform:rotateX(400deg);} 80%{transform:rotateX(340deg);} 100%{transform:rotateX(360deg);}}
+@keyframes downturning-out{0%{transform:rotateX(0deg);} 40%{transform:rotateX(-400deg);} 80%{transform:rotateX(-340deg);} 100%{transform:rotateX(-360deg);}}
+@keyframes rightturning-out{0%{transform:rotateY(0deg);} 40%{transform:rotateY(-400deg);} 80%{transform:rotateY(-340deg);} 100%{transform:rotateY(-360deg);}}
+@keyframes leftturning-out{0%{transform:rotateY(0deg);} 40%{transform:rotateY(400deg);} 80%{transform:rotateY(340deg);} 100%{transform:rotateY(360deg);}}
+/*@keyframes left-border-in{0%{height: 0; top:-200%} 100%{height: 100%; top:0}}
 @keyframes left-border-out{0%{height: 100%; top:0%; opacity: 1;} 100%{height: 0; top:130%; opacity: 1;}}
 @keyframes right-border-in{0%{height: 0; top:200%;} 100%{height: 100%; top:0;}}
 @keyframes right-border-out{0%{height: 100%; top:0%;} 100%{height: 0; top:-130%;}}
 @keyframes top-border-in{0%{width: 0; left:200%;} 100%{width: 100%; left:0;}}
 @keyframes top-border-out{0%{width: 100%; left:0%;} 100%{width: 0; left:-130%;}}
 @keyframes bottom-border-in{0%{width: 0; left:-200%;} 100%{width: 100%; left:0;}}
-@keyframes bottom-border-out{0%{width: 100%; left:0%;} 100%{width: 0; left:130%;}}
+@keyframes bottom-border-out{0%{width: 100%; left:0%;} 100%{width: 0; left:130%;}}*/
+/*学历*/
+#edu_left_bg{width: 25%; height: 100%; position: absolute;left: 0; top: 0; opacity: 0.1;background-color: #000; display: none;}
+#edu_left_bg .after{position: absolute; left: 100%; top: 0; display: block; width:0; height: 0;}
+#edu_right_bg{width: 25%; height: 100%; position: absolute;right: 0; top: 0; opacity: 0.1;background-color: #fff; display: none;}
+#edu_right_bg .after{position: absolute; right: 100%; top: 0; display: block; width:0; height: 0;}
+#education_left{width: 50%; height: 100%; float: left; position: absolute; left: 0;}
+#education_right{width: 50%; height: 100%; float: right; position: absolute; right:0;}
+#major_info{position: absolute; left: 0; bottom: 55%;}
+#skills_info{position: absolute; right: 0; top:45%; text-align: right; width: 100%;}
+
+.edu-info,.education-title{line-height: 25px; font-size: 20px; color:#eee; position: relative; margin: 0; padding:0; display: inline-block; height: 0; overflow: hidden;}
+.edu-info:after,.education-title:after{content:''; display: block; position: absolute; width: 100%; height: 100%; background: #eee; opacity: 0.2; top:0; left: 0; border-radius: 4px;}
+#cet{left: -60px; top:-60px;}
+#major{left: -100px; top:-60px;}
+#school_edu{left: -140px; top:-60px;}
+#coding_skills{right: 40px;}
+#skill1{right: 0px;}
+#skill2{right: -40px;}
+#skill3{right: -80px;}
+#skill4{right: -120px;}
+.skill-level{; width: 100%; height: 10px; margin-top: 30px; margin-left: 10%; background: -webkit-linear-gradient(0deg, #eee, #1e8c42, #f76f0b, #df301e, #222); position: relative; display: none;}
+.level-dot{width: 20px; height: 20px; border-radius: 20px; position: absolute; top:-5px; box-shadow: 0px 0px 2px #fff inset;}
+.level-dot>span{display: block; width: 40px; height: 20px; border-radius: 3px; margin-left: -10px; margin-top: -25px; background: -webkit-linear-gradient(#333738,#212121); text-align: center; font-size: 10px; line-height: 20px; color: #eee}
+.level-dot>span:after{content: ''; display: block; width: 0; height: 0; overflow: hidden; border-top: 5px solid #212121; border-left: 9px solid transparent; border-bottom: 5px solid transparent; border-right: 9px solid transparent; left: 0px; position: absolute;}
+#level_dot_1{background: #eee; left: -10px;}
+#level_dot_2{background: #1e8c42; left: 23%;}
+#level_dot_3{background: #f76f0b; left: 48%;}
+#level_dot_4{background: #df301e; right: 23%;}
+#level_dot_5{background: #222; right: -10px;}
+.master{background: -webkit-linear-gradient(#ee3522,#692A23); padding: 3px; border-radius: 3px; font-size: 16px;}
+.acquaintance{background: -webkit-linear-gradient(#f98d3e,#ee3522); padding: 3px; border-radius: 3px; font-size: 16px;}
+.primary{background: -webkit-linear-gradient(#26b655,#887a18); padding: 3px; border-radius: 3px; font-size: 16px;}
+/*#bg-test{background-image:-webkit-linear-gradient(-90deg, #fe6700, #feb544); }*/
 </style>
 <body>
 	<div id="main">
@@ -390,6 +441,8 @@
 					</div>
 					<!--head end-->
 				</div>
+
+				<!-- basic infomation -->
 				<div id="basic_info">
 					<div id="name" class="slide-box">
 						<div class="slide-box-bg"></div>
@@ -401,7 +454,7 @@
 							</span><span class="block-word"><span class="word-bg"></span><span>杰</span>
 							</span><span class="block-word"><span class="word-bg"></span><span>熙</span></span>
 					</div>
-					<div id="school" class="slide-box">
+					<!-- <div id="school" class="slide-box">
 						<div class="slide-box-bg"></div>
 						<div class="left-border"></div>
 						<div class="right-border"></div>
@@ -413,8 +466,8 @@
 							</span><span class="block-word"><span class="word-bg"></span><span>技</span>
 							</span><span class="block-word"><span class="word-bg"></span><span>大</span>
 							</span><span class="block-word"><span class="word-bg"></span><span>学</span></span>
-					</div>
-					<div id="job" class="slide-box">
+					</div> -->
+					<!-- <div id="job" class="slide-box">
 						<div class="slide-box-bg"></div>
 						<div class="left-border"></div>
 						<div class="right-border"></div>
@@ -422,14 +475,67 @@
 						<div class="bottom-border"></div>
 						<span class="block-word"><span class="word-bg"></span><span>前</span></span>
 						<span class="block-word"><span class="word-bg"></span><span>端</span></span>
-						<span class="block-word"><span class="word-bg"></span><span>工</span></span>
+						<span class="anti-block-word"><span class="word-bg" title="我什么也不知道啊，是他让我这样转的！"></span><span>工</span></span>
 						<span class="block-word"><span class="word-bg"></span><span>程</span></span>
 						<span class="block-word"><span class="word-bg"></span><span>师</span>	</span>
+					</div> -->
+					<div id="motto" class="slide-box">
+						<div class="slide-box-bg"></div>
+						<div class="left-border"></div>
+						<div class="right-border"></div>
+						<div class="top-border"></div>
+						<div class="bottom-border"></div>
+						<span class="tiny-block-word"><span class="word-bg"></span><span>不</span></span>
+						<span class="tiny-block-word"><span class="word-bg"></span><span>学</span></span>
+						<span class="tiny-block-word"><span class="word-bg"></span><span>后</span></span>
+						<span class="tiny-block-word"><span class="word-bg"></span><span>台</span></span>
+						<span class="tiny-block-word"><span class="word-bg"></span><span>的</span></span>
+						<span class="tiny-block-word"><span class="word-bg"></span><span>前</span></span>
+						<span class="tiny-block-word"><span class="word-bg"></span><span>端</span></span>
+						<span class="tiny-block-word"><span class="word-bg"></span><span>不</span></span>
+						<span class="tiny-block-word"><span class="word-bg"></span><span>是</span></span>
+						<span class="tiny-block-word"><span class="word-bg"></span><span>好</span></span>
+						<span class="tiny-block-word"><span class="word-bg"></span><span>厨</span></span>
+						<span class="tiny-block-word"><span class="word-bg"></span><span>师</span></span>
 					</div>
 				</div>
+				<!-- basic information end -->
 
 			</div>
-			<div class="block">1</div>
+			<div class="block" id="education">
+				
+				<div id="education_left">
+					<div id="skills_info">
+						<div class="education-title education-title-left" id="coding_skills">编程能力</div></br>
+						<div id="skill1" class="edu-info edu-info-left">基础能力：<span class="master">HTML + CSS + JavaScript</span></div></br>
+						<div id="skill2" class="edu-info edu-info-left">前端框架：<span class="master">jQuery</span>,<span class="acquaintance">jQuery Mobile</span>,<span class="acquaintance">MUI</span>,<span class="acquaintance">BootStrap</span>,<span class="acquaintance">JADE模板引擎</span></div></br>
+						<div id="skill3" class="edu-info edu-info-left">后台语言：<span class="acquaintance">Node.js</span>,<span class="primary">Python</span>,<span class="primary">JAVA</span></div></br>
+						<div id="skill4" class="edu-info edu-info-left">其他语言：<span class="primary">C语言</span>,<span class="primary">C++</span>,<span class="acquaintance">MySQL</span></div></br>
+						<div class="skill-level">
+							<div class="level-dot" id="level_dot_1"><span>小白</span></div>
+							<div class="level-dot" id="level_dot_2"><span>了解</span></div>
+							<div class="level-dot" id="level_dot_3"><span>熟悉</span></div>
+							<div class="level-dot" id="level_dot_4"><span>精通</span></div>
+							<div class="level-dot" id="level_dot_5"><span>玩转</span></div>
+						</div>
+					</div>
+				</div>
+				<div id="education_right">
+					<div id="major_info">
+						<div class="education-title education-title-right" id="school_edu">教育背景</div></br>
+						<div id="major" class="edu-info edu-info-right">华中科技大学 数字媒体技术</div></br>
+						<div id="cet" class="edu-info edu-info-right">英语四级：550,英语六级：439</div></br>
+					</div>
+					
+				</div>
+				<!-- 背景 -->
+				<div id="edu_left_bg">
+					<div class="after"></div>
+				</div>
+				<div id="edu_right_bg">
+					<div class="after"></div>
+				</div>	
+			</div>
 			<div class="block">2</div>
 			<div class="block">3</div>
 			<div class="block">4</div>
@@ -440,49 +546,72 @@
 			<div class="block">9</div>
 		</div>
 	</div>
+	<!-- 侧面进度条 -->
 	<div id="sidebar">
 		<div class="side-tag">
-			<span class="tag-name">1</span>
+			<span class="tag-name">蔡杰熙<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">2</span>
+			<span class="tag-name">学历<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">3</span>
+			<span class="tag-name">3<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">4</span>
+			<span class="tag-name">4<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">5</span>
+			<span class="tag-name">5<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">6</span>
+			<span class="tag-name">6<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">7</span>
+			<span class="tag-name">7<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">8</span>
+			<span class="tag-name">8<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">9</span>
+			<span class="tag-name">9<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">0</span>
+			<span class="tag-name">0<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>			
 		<div id="time_line"></div>
 	</div>
+	<!-- 进度条 end -->
+
+	<!-- contact me -->
+	<div id="contact">
+		<div id="contact_button">
+			<p>联</p>
+			<p>系</p>
+			<p>我</p>
+		</div>
+		<div id="contact_info">
+			<p>手机：</p>
+			<p><a href="tel:13212778223">13212778223</a></p>
+			<p>QQ：</p>
+			<p><a href="http://wpa.qq.com/msgrd?v=3&uin=8245957&site=qq&menu=yes">8245957</a></p>
+			<p>邮箱：</p>
+			<p><a href="mailto:jas85000@163.com">jas85000@163.com</a></p>
+			<p>微信：</p>
+			<p>pencilCCC</p>
+		</div>
+		
+	</div>
+	<!-- contact end -->
 
 </body>
 <script type="text/javascript">
@@ -504,15 +633,29 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 
 </script>
 <script type="text/javascript">
+	//全局变量
 	var WIN_WIDTH = $(document).width();
 	var WIN_HEIGHT = $(document).height();
 	var PAGE_INDEX = 0;
 	//随机颜色数组
-	var COLORS = ['#999966','#996699','#CC9933','#666666','#663366','#009999','#99CC33','#336699','#996699','#663366','#666666','#999966','#996699','#CC9933','#666666','#663366']
+	var BG_COLORS = ['-webkit-linear-gradient(#336633, #506e72)','-webkit-linear-gradient(#506e72, #13acc2)','-webkit-linear-gradient(#13acc2, #4877c9)','-webkit-linear-gradient(#4877c9, #6c59cd)','-webkit-linear-gradient(#6c59cd, #a155cd)','-webkit-linear-gradient(#a155cd, #d9a066)','-webkit-linear-gradient(#d9a066, #fa8f4f)','#fa8f4f','#fa8f4f','#fa8f4f','#fa8f4f','#fa8f4f','#fa8f4f']
+	var SIDE_BG_COLORS = ['-webkit-linear-gradient(#336633, #4f6d70 70%, #4f6d70)',	'-webkit-linear-gradient(#437a82, #239bac 70%, #239bac)',	'-webkit-linear-gradient(#249ac2, #4172b7 70%, #4172b7)',	'-webkit-linear-gradient(#576ccc, #6361cc 70%, #6361cc)',	'-webkit-linear-gradient(#7e55cd, #a154cd 70%, #a154cd)',	'-webkit-linear-gradient(#ad65b6, #ca8d80 70%, #ca8d80)',	'-webkit-linear-gradient(#e7a455, #f69550 70%, #f69550)',	'-webkit-linear-gradient(#f69550, #f9a95a 70%, #f9a95a)',	'-webkit-linear-gradient(#f69550, #f9a95a 70%, #f9a95a)',	'-webkit-linear-gradient(#f69550, #f9a95a 70%, #f9a95a)',	'-webkit-linear-gradient(#f69550, #f9a95a 70%, #f9a95a)'];
+
+	var SIDE_BUTTON_BG_COLORES = ["#4f6d70",'#239bac','#4172b7','#6361cc','#a154cd','#ca8d80','#f69550','#f9a95a','#f9a95a'];
+	var SIDE_SHADOW_COLORS = ["#eee","#666E77","#a7c5f0","#c2c3e7","#351762","#f8bcf7","#5c5a59","#74184e","#74184e","#74184e"];
+	var FONT_COLORS = ["#85de85","#9ac6cc","#a1b9db","#c2c3e7","#351762","#f8bcf7","#5c5a59","#74184e","#74184e","#74184e"];
+	var TAG_COLORS = ['#204a22','#445e63','#1688ad','#3e5eac','#613fba','#954bb0','#f16c14','#f16c14','#f16c14','#f16c14'];
+	var TAG_ARROW_COLORS = [' 18px solid #1e4f20',	' 18px solid #446066',	' 18px solid #208db0',	' 18px solid #4364b5',	' 18px solid #633dc5',	' 18px solid #9c4bb9',	' 18px solid #e97425',	' 18px solid #e97425',	' 18px solid #e97425',	' 18px solid #e97425',	' 18px solid #e97425'];
+	var DOT_COLORS = ['#204a22','#33393a','#224e66','#424ca1','#682c98','#954bb0','#f16c14','#f16c14','#f16c14','#f16c14'];
 	//侧栏两球间距离
 	var BALL_DISTANCE = 45;
 	var isCanMove = true;
 	var startY = 0, endY = 0;
+
+	// 部分样式初始化
+	$("#edu_left_bg .after").css({"border-left": 0.25*WIN_WIDTH + "px solid #000", "border-top" : 0.5*WIN_HEIGHT +"px solid transparent", "border-right" : 0.25*WIN_WIDTH + "px solid transparent", "border-bottom": 0.5*WIN_HEIGHT + "px solid #000"})
+	$("#edu_right_bg .after").css({"border-left": 0.25*WIN_WIDTH + "px solid transparent", "border-top" : 0.5*WIN_HEIGHT +"px solid #fff", "border-right" : 0.25*WIN_WIDTH + "px solid #fff", "border-bottom": 0.5*WIN_HEIGHT + "px solid transparent"})
+
 	$(document).ready(function(){
 		//初始化body宽高
 		$(document.body).width(WIN_WIDTH);
@@ -532,22 +675,19 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 		//侧栏效果
 		//注意对应当前页面的标签不能动
 		$(".side-tag").hover(function(){
-
 				$(this).find(".tag-name").stop(true).animate({opacity:0.8, left: "-85px", top: "-7px"});
-				$(this).find(".side-tag-dot").css({border:"2px solid #fff"});
-			
+				$(this).find(".side-tag-dot").css({border:"2px solid #fff"});			
 		},function(){
 			if($(this).index() != PAGE_INDEX){
 				$(this).find(".tag-name").animate({opacity:0, left: "-100px", top: "10px"});
 				if($(this).index() > PAGE_INDEX){
-					$(this).find(".side-tag-dot").css({border:"2px solid #003366"});
+					$(this).find(".side-tag-dot").css({'border':' 2px solid'+DOT_COLORS[PAGE_INDEX]});
 				}
 			}
 		}).click(function(){
 			// 实现翻页动画
 			var targetIndex = $(this).index();
-			scrollPage(targetIndex)
-			
+			scrollPage(targetIndex)	
 		})
 
 
@@ -621,6 +761,20 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 		    }
 	    }, false);
 
+	    //联系方式框
+	    var contactAnimation;
+	    // 此处采用hover函数反而会出错，所以改用mouseover和mouseout
+	    $("#contact").mouseover(function(){ //鼠标移入
+	    	clearTimeout(contactAnimation);
+	    	$("#contact").stop().animate({left:"0"},400);
+	    }).mouseout(function(){
+	    	clearTimeout(contactAnimation);
+	    	contactAnimation = setTimeout(function(){
+		    	$("#contact").stop().animate({left:"-183px"},400);
+		    }, 300)
+	    })
+
+
 	    /* 基本个人信息动画
 		 *鼠标移入，上下左右4条边按逆时针方向移入
 		 *判断鼠标移入方向，选择合适的显示动画（旋转或者翻转）
@@ -629,141 +783,258 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 		 *判断鼠标移出方向，选择合适的显示动画
 		 */
 		 $(".slide-box").each(function(){
-		 	$(this).hover(function(e){
+		 	$(this).hover(function(e){  //划入
 		 		var curObj = $(this)
 		 		var w = $(this).width();
 				var h = $(this).height();
 				var x = (e.pageX - $(this).offset().left - (w / 2)) * (w > h ? (h / w) : 1);
 				var y = (e.pageY - $(this).offset().top - (h / 2)) * (h > w ? (w / h) : 1);
-				var direction = Math.round((((Math.atan2(y, x) * (180 / Math.PI))) / 90))+1;
+				var direction = Math.round(((((Math.atan2(y, x) * (180 / Math.PI))) / 90))+5)%4;
 				// 上，右，下，左 --> 0, 1, 2, 3
 				// console.log("direction: "+direction)
 
-				curObj.find(".slide-box-bg").animate({"opacity":"1"});
+				curObj.find(".slide-box-bg").stop(true, true).animate({"opacity":"1"});
 				curObj.css({"color":"#9BB99B","text-shadow":"1px 1px #141B14"});
+				// 边框处理
+
+				// 方案一
+				// // 左边框
+		 	// 	setTimeout(function(){
+		 	// 		curObj.find(".left-border").css({"animation":"left-border-in 1s","opacity":"1"});
+		 	// 	}, ((5+direction)%4)*200);
+		 	// 	// 下边框
+		 	// 	setTimeout(function(){
+		 	// 		curObj.find(".bottom-border").css({"animation":"bottom-border-in 1s","opacity":"1"});
+		 	// 	}, ((6+direction)%4)*200);
+		 	// 	// 右边框
+		 	// 	setTimeout(function(){
+		 	// 		curObj.find(".right-border").css({"animation":"right-border-in 1s","opacity":"1"});
+		 	// 	}, ((7+direction)%4)*200);
+		 	// 	// 上边框
+		 	// 	setTimeout(function(){
+		 	// 		curObj.find(".top-border").css({"animation":"top-border-in 1s","opacity":"1"});
+		 	// 	}, ((8+direction)%4)*200);
+
+				// 方案二
 				// 左边框
-		 		setTimeout(function(){
-		 			curObj.find(".left-border").css({"animation":"left-border-in 1s","opacity":"1"});
-		 		}, ((5+direction)%4)*200);
-		 		// 下边框
-		 		setTimeout(function(){
-		 			curObj.find(".bottom-border").css({"animation":"bottom-border-in 1s","opacity":"1"});
-		 		}, ((6+direction)%4)*200);
-		 		// 右边框
-		 		setTimeout(function(){
-		 			curObj.find(".right-border").css({"animation":"right-border-in 1s","opacity":"1"});
-		 		}, ((7+direction)%4)*200);
-		 		// 上边框
-		 		setTimeout(function(){
-		 			curObj.find(".top-border").css({"animation":"top-border-in 1s","opacity":"1"});
-		 		}, ((8+direction)%4)*200);
+				// clearTimeout(curObj.borderLeftAnimate);
+		 	// 	curObj.borderLeftAnimate = setTimeout(function(){
+		 	// 		curObj.find(".left-border").stop(true).css({"height":"0","top":"-100%"}).animate({"height":"100%","top":"0"});
+		 	// 	}, ((5+direction)%4)*200);
+		 	// 	// 下边框
+				// clearTimeout(curObj.borderBottomAnimate);
+		 	// 	curObj.borderBottomAnimate = setTimeout(function(){
+		 	// 		curObj.find(".bottom-border").stop(true).css({"width":"0","left":"-100%"}).animate({"width":"100%","left":"0"});
+		 	// 	}, ((6+direction)%4)*200);
+		 	// 	// 右边框
+				// clearTimeout(curObj.borderRightAnimate);
+		 	// 	curObj.borderRightAnimate = setTimeout(function(){
+		 	// 		curObj.find(".right-border").stop(true).css({"height":"0", "bottom":"-100%"}).animate({"height":"100%", "bottom":"0"});
+		 	// 	}, ((7+direction)%4)*200);
+		 	// 	// 上边框
+				// clearTimeout(curObj.borderTopAnimate);
+		 	// 	curObj.borderTopAnimate = setTimeout(function(){
+		 	// 		curObj.find(".top-border").stop(true).css({"width":"0","right":"-100%"}).animate({"width":"100%", "right":"0"});
+		 	// 	}, ((8+direction)%4)*200);
+
+		 		// 方案三
+		 		// 左边框
+				curObj.find(".left-border").stop(true, true).css({"height":"0","top":"-100%"}).animate({"height":"0","top":"-100%"}, ((5+direction)%4)*200+1 ,function(){
+						curObj.find(".left-border").animate({"height":"100%","top":"0"}, 200);
+				});
+				// 右边框
+				curObj.find(".right-border").stop(true, true).css({"height":"0","bottom":"-100%"}).animate({"height":"0","bottom":"-100%"}, ((7+direction)%4)*200+1 ,function(){
+						curObj.find(".right-border").animate({"height":"100%","bottom":"0"}, 200);
+				})
+				// 上边框
+				curObj.find(".top-border").stop(true, true).css({"width":"0","right":"-100%"}).animate({"width":"0","right":"-100%"}, ((8+direction)%4)*200+1 ,function(){
+						curObj.find(".top-border").animate({"width":"100%","right":"0"}, 200);
+				})
+				// 下边框
+				curObj.find(".bottom-border").stop(true, true).css({"width":"0","left":"-100%"}).animate({"width":"0","left":"-100%"}, ((6+direction)%4)*200+1 ,function(){
+						curObj.find(".bottom-border").animate({"width":"100%","left":"0"}, 200);
+				})
+
 		 		// 文字动画
 		 		curObj.find(".word-bg").animate({"opacity":"0.8"});
 		 		switch(direction){
 		 			// 0,上边框入
 		 			case 0: {
-		 				curObj.find(".block-word").css({"animation":"downturning 5s"});	
+		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"downturning 5s"});	
+		 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"leftturning 5s"});	
 		 			}break;
 		 			// 1,右边框入
 		 			case 1: {
-		 				curObj.find(".block-word").css({"animation":"anti-clockwise 5s"});	
+		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"anti-clockwise 5s"});	
+		 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"clockwise 5s"});	
 		 			}break;
 		 			// 2,下边框入
 		 			case 2: {
-		 				curObj.find(".block-word").css({"animation":"upturning 5s"});	
+		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"upturning 5s"});	
+		 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"rightturning 5s"});	
 		 			}break;
 		 			// 3,左边框入
 		 			case 3: {
-		 				curObj.find(".block-word").css({"animation":"clockwise 5s"});	
+		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"clockwise 5s"});	
+		 				curObj.find(".anti-block-word, .anti-tiny-block-word").css({"animation":""}).css({"animation":"anti-clockwise 5s"});	
 		 			}break;
 		 		}
 		 		
-		 	},function(e){
+		 	},function(e){  //划出
 		 		var curObj = $(this)
 		 		var w = $(this).width();
 				var h = $(this).height();
 				var x = (e.pageX - $(this).offset().left - (w / 2)) * (w > h ? (h / w) : 1);
 				var y = (e.pageY - $(this).offset().top - (h / 2)) * (h > w ? (w / h) : 1);
-				var direction = Math.round((((Math.atan2(y, x) * (180 / Math.PI))) / 90))+1;
-				console.log(direction)
-				curObj.find(".slide-box-bg").animate({"opacity":"0.1"});
+				var direction = Math.round(((((Math.atan2(y, x) * (180 / Math.PI))) / 90))+5)%4;
+				curObj.find(".slide-box-bg").stop(true, true).animate({"opacity":"0.1"});
 				curObj.css({"color":"#111","text-shadow":"1px 1px #719671"});
 
+				// 左边框
+		 		curObj.find(".left-border").stop(true, true).css({"height":"100%","top":"0"}).animate({"height":"100%","top":"0"}, ((5+direction)%4)*200+1 ,function(){
+						curObj.find(".left-border").animate({"height":"0","top":"200%"}, 200);
+				});
+				// 右边框
+				curObj.find(".right-border").stop(true, true).css({"height":"100%","bottom":"0"}).animate({"height":"100%","bottom":"0"}, ((7+direction)%4)*200+1 ,function(){
+						curObj.find(".right-border").animate({"height":"0","bottom":"200%"}, 200);
+				})
+				// 上边框
+				curObj.find(".top-border").stop(true, true).css({"width":"100%","right":"0"}).animate({"width":"100%","right":"0"}, ((8+direction)%4)*200+1 ,function(){
+						curObj.find(".top-border").animate({"width":"0","right":"200%"}, 200);
+				})
+				// 下边框
+				curObj.find(".bottom-border").stop(true, true).css({"width":"100%","left":"0"}).animate({"width":"100%","left":"0"}, ((6+direction)%4)*200+1 ,function(){
+						curObj.find(".bottom-border").animate({"width":"0","left":"200%"}, 200);
+				})
 
-		 		// 左边框
-		 		setTimeout(function(){
-		 			curObj.find(".left-border").css({"animation":"left-border-out 1s","opacity":"0"});
-		 		}, ((5+direction)%4)*200);
-		 		// 下边框
-		 		setTimeout(function(){
-		 			curObj.find(".bottom-border").css({"animation":"bottom-border-out 1s","opacity":"0"});
-		 		}, ((6+direction)%4)*200);
-		 		// 右边框
-		 		setTimeout(function(){
-		 			curObj.find(".right-border").css({"animation":"right-border-out 1s","opacity":"0"});
-		 		}, ((7+direction)%4)*200);
-		 		// 上边框
-		 		setTimeout(function(){
-		 			curObj.find(".top-border").css({"animation":"top-border-out 1s","opacity":"0"});
-		 		}, ((8+direction)%4)*200);
-		 		setTimeout(function(){
-		 			curObj.find(".left-border, .bottom-border, .right-border, .top-border").css({"opacity":"0"})
-		 		}, 1800)
 		 		// 文字动画
 		 		curObj.find(".word-bg").animate({"opacity":"0"});
 		 		switch(direction){
 		 			// 0,上边框出
 		 			case 0: {
-		 				curObj.find(".block-word").css({"animation":"upturning 5s"});	
+		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"upturning-out 5s"});	
+		 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"rightturning-out 5s"});	
 		 			}break;
 		 			// 1,右边框出
 		 			case 1: {
-		 				curObj.find(".block-word").css({"animation":"clockwise 5s"});	
+		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"clockwise-out 5s"});	
+		 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"anti-clockwise-out 5s"});	
 		 			}break;
 		 			// 2,下边框出
 		 			case 2: {
-		 				curObj.find(".block-word").css({"animation":"downturning 5s"});	
+		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"downturning-out 5s"});	
+		 				curObj.find(".anti-block-word, .anti-tiny-block-word").css({"animation":""}).css({"animation":"leftturning-out 5s"});	
 		 			}break;
 		 			// 3,左边框出
 		 			case 3: {
-		 				curObj.find(".block-word").css({"animation":"anti-clockwise 5s"});	
+		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"anti-clockwise-out 5s"});	
+		 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"clockwise-out 5s"});	
 		 			}break;
 		 		}
 
 		 	})
 		 })
+		
 	})
-
-	function fn(){}
 
 	function scrollPage(index){
 		//页面位置滑动到index处
+		resetPage(PAGE_INDEX);
 		isCanMove = false;
-		$("#main_container").animate({top:-1*index*WIN_HEIGHT+"px"}, 600,function(){
-			$("#main_container").css({background:COLORS[index]});
-			//展示当前页面进入的动画
-			showCurPage(index);
-		});
+		// function(){
+			$("#main_container").animate({top:-1*index*WIN_HEIGHT+"px"}, 600,function(){
+				$("#main").css({background:BG_COLORS[index]});
+				//侧栏联系我框变化
+				$("#contact").css({background:SIDE_BG_COLORS[index], "box-shadow":"0 0 5px "+SIDE_SHADOW_COLORS[index], color: FONT_COLORS[index]});
+				$("#contact a").css({color:FONT_COLORS[index]})
+				$("#contact_button").css({background:SIDE_BUTTON_BG_COLORES[index], "box-shadow": "2px 0 3px "+SIDE_SHADOW_COLORS[index]});
+				$(".tag-name").css({background:TAG_COLORS[index]})
+				$(".tag-name-after").css({'border-left':TAG_ARROW_COLORS[index]})
+				//展示当前页面进入的动画
+				showCurPage(index);
+			});
 
-		//侧栏响应滚动到对应栏，并且显示标签
-		$(".side-tag").each(function(){
-			if($(this).index() <= index){
-				$(this).find(".side-tag-dot").css({border:"2px solid #fff", background:"#fff"});
-			}else{
-				$(this).find(".side-tag-dot").css({border:"2px solid #003366", background:"none"});
-			}
-			if($(this).index() != index){
-				$(this).find(".tag-name").animate({opacity:0});
-			}
-		})
-		//时间线向下移动至当前点
-		var timeLine =  index * BALL_DISTANCE + "px";
-		$("#time_line").animate({ height: timeLine}, function(){isCanMove = true})
-		//重定位PAGE_INDEX
-		PAGE_INDEX = index;
+			//时间线向下移动至当前点
+			var timeLine =  index * BALL_DISTANCE + "px";
+			//侧栏响应滚动到对应栏，并且显示标签
+			$("#time_line").animate({ height: timeLine}, function(){
+				$(".side-tag").each(function(){
+					if($(this).index() <= index){
+						$(this).find(".side-tag-dot").css({border:"2px solid #fff", background:"#fff"});
+						if($(this).index() == index){
+							$(this).find(".tag-name").animate({opacity:1, left:"-85px", top:"-7px"});
+						}
+					}else{
+						$(this).find(".side-tag-dot").css({border:"2px solid "+ DOT_COLORS[index], background:"none"});
+					}
+					if($(this).index() != index){
+						$(this).find(".tag-name").animate({opacity:0,left:"-100px", top:"10px"});
+					}
+				});
+
+			})
+		// }
+		
 	}
 	function showCurPage(index){
 		// console.log("current page is : " + (index+1) );
+		
+		
+		
+		switch(index){
+			case 0:{}break;
+			case 1:{
+				// console.log("PAGE1");
+				//背景从上下两边出现然后划入
+				$("#edu_left_bg").css({"display":"block","left":"-300%"}).stop(true,true).animate({"left":"0"},500,
+					function(){
+					$(".edu-info-left,.education-title-left").stop().animate({"height":"0"},800).animate({"height":"30px","margin":"5px", "padding":"5px 13px"},800,
+						function(){
+							$(".skill-level").show(300)
+					})
+				});
+				$("#edu_right_bg").css({"display":"block","right":"-300%"}).stop(true,true).animate({"right":"0"},500,
+					function(){
+					$(".edu-info-right,.education-title-right").stop().animate({"height":"30px","margin":"5px", "padding":"5px 13px"},800)
+				});
+
+			}break;
+			case 2:{}break;
+			case 3:{}break;
+			case 4:{}break;
+			case 5:{}break;
+			case 6:{}break;
+			case 7:{}break;
+			case 8:{}break;
+			case 9:{}break;
+			case 10:{}break;
+			default:{}break;
+		}
+		//重定位PAGE_INDEX
+		PAGE_INDEX = index;
+		isCanMove = true;
+	}
+	function resetPage(index){
+		switch(index){
+			case 0 :{}break;
+			case 1:{
+				$(".edu-info,.education-title").stop().animate({"height":"0","margin":"0", "padding":"0"},500,
+					function(){
+						$("#edu_left_bg, #edu_right_bg, .skill-level").css({"display":"none"})
+					})
+			}break;
+			case 2:{}break;
+			case 3:{}break;
+			case 4:{}break;
+			case 5:{}break;
+			case 6:{}break;
+			case 7:{}break;
+			case 8:{}break;
+			case 9:{}break;
+			case 10:{}break;
+			case 11:{}break;
+			default:{}break;
+		}
 	}
 </script>
 </html>
