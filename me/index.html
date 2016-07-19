@@ -221,7 +221,7 @@
 #skill2{right: -40px;}
 #skill3{right: -80px;}
 #skill4{right: -120px;}
-.skill-level{; width: 100%; height: 10px; margin-top: 30px; margin-left: 10%; background: -webkit-linear-gradient(0deg, #eee, #1e8c42, #f76f0b, #df301e, #222); position: relative; display: none;}
+.skill-level{width: 100%; height: 10px; margin-top: 30px; margin-left: 10%; background: -webkit-linear-gradient(0deg, #eee, #1e8c42, #f76f0b, #df301e, #222); position: relative; display: none;}
 .level-dot{width: 20px; height: 20px; border-radius: 20px; position: absolute; top:-5px; box-shadow: 0px 0px 2px #fff inset;}
 .level-dot>span{display: block; width: 40px; height: 20px; border-radius: 3px; margin-left: -10px; margin-top: -25px; background: -webkit-linear-gradient(#333738,#212121); text-align: center; font-size: 10px; line-height: 20px; color: #eee}
 .level-dot>span:after{content: ''; display: block; width: 0; height: 0; overflow: hidden; border-top: 5px solid #212121; border-left: 9px solid transparent; border-bottom: 5px solid transparent; border-right: 9px solid transparent; left: 0px; position: absolute;}
@@ -655,6 +655,9 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 	// 部分样式初始化
 	$("#edu_left_bg .after").css({"border-left": 0.25*WIN_WIDTH + "px solid #000", "border-top" : 0.5*WIN_HEIGHT +"px solid transparent", "border-right" : 0.25*WIN_WIDTH + "px solid transparent", "border-bottom": 0.5*WIN_HEIGHT + "px solid #000"})
 	$("#edu_right_bg .after").css({"border-left": 0.25*WIN_WIDTH + "px solid transparent", "border-top" : 0.5*WIN_HEIGHT +"px solid #fff", "border-right" : 0.25*WIN_WIDTH + "px solid #fff", "border-bottom": 0.5*WIN_HEIGHT + "px solid transparent"})
+	$(".block").each(function(){
+		$(this).css({"background": BG_COLORS[$(this).index()]})
+	})
 
 	$(document).ready(function(){
 		//初始化body宽高
@@ -672,7 +675,7 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 		lineColor: '#5cbdaa'
 		});
 
-		//侧栏效果
+		//侧栏效果、翻页动画
 		//注意对应当前页面的标签不能动
 		$(".side-tag").hover(function(){
 				$(this).find(".tag-name").stop(true).animate({opacity:0.8, left: "-85px", top: "-7px"});
@@ -686,8 +689,10 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 			}
 		}).click(function(){
 			// 实现翻页动画
-			var targetIndex = $(this).index();
-			scrollPage(targetIndex)	
+			if(isCanMove){
+				var targetIndex = $(this).index();
+				scrollPage(targetIndex)	
+			}
 		})
 
 
@@ -939,102 +944,177 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 
 	function scrollPage(index){
 		//页面位置滑动到index处
-		resetPage(PAGE_INDEX);
 		isCanMove = false;
-		// function(){
-			$("#main_container").animate({top:-1*index*WIN_HEIGHT+"px"}, 600,function(){
-				$("#main").css({background:BG_COLORS[index]});
-				//侧栏联系我框变化
-				$("#contact").css({background:SIDE_BG_COLORS[index], "box-shadow":"0 0 5px "+SIDE_SHADOW_COLORS[index], color: FONT_COLORS[index]});
-				$("#contact a").css({color:FONT_COLORS[index]})
-				$("#contact_button").css({background:SIDE_BUTTON_BG_COLORES[index], "box-shadow": "2px 0 3px "+SIDE_SHADOW_COLORS[index]});
-				$(".tag-name").css({background:TAG_COLORS[index]})
-				$(".tag-name-after").css({'border-left':TAG_ARROW_COLORS[index]})
-				//展示当前页面进入的动画
-				showCurPage(index);
-			});
 
-			//时间线向下移动至当前点
-			var timeLine =  index * BALL_DISTANCE + "px";
-			//侧栏响应滚动到对应栏，并且显示标签
-			$("#time_line").animate({ height: timeLine}, function(){
-				$(".side-tag").each(function(){
-					if($(this).index() <= index){
-						$(this).find(".side-tag-dot").css({border:"2px solid #fff", background:"#fff"});
-						if($(this).index() == index){
-							$(this).find(".tag-name").animate({opacity:1, left:"-85px", top:"-7px"});
-						}
-					}else{
-						$(this).find(".side-tag-dot").css({border:"2px solid "+ DOT_COLORS[index], background:"none"});
-					}
-					if($(this).index() != index){
-						$(this).find(".tag-name").animate({opacity:0,left:"-100px", top:"10px"});
-					}
-				});
-
+		//直接用then出错
+		resetPage(PAGE_INDEX,index)
+			.then(slideTimeline)
+			.then(slidePage)
+			.then(showCurPage)
+			.then(function(index){
+				//重定位PAGE_INDEX
+				PAGE_INDEX = index;
+				isCanMove = true;
 			})
-		// }
+			// .then(function(){console.log("画面滑动完了")})
+
+		//用when也出错
+		// $.when(resetPage(PAGE_INDEX))
+		// .then($.when(slidePage(index), slideTimeline(index))
+		// 	.then(showCurPage(index)))
+		
+		//嵌套也不行
+		// resetPage(PAGE_INDEX)
+		// 	.then(slidePage(index)
+		// 		.then(slideTimeline(index)
+		// 			.then(showCurPage(index)
+		// 				.then(function(){console.log("画面滑动完了")})
+		// 				.then(function(){isCanMove = true}))))
+
 		
 	}
-	function showCurPage(index){
-		// console.log("current page is : " + (index+1) );
+	function resetPage(curIndex, nextIndex){  //页面复原函数
+		var def = $.Deferred();
+		switch(curIndex){
+			case 0 :{
+				def.resolve(nextIndex)
+				
+
+			}break;
+			case 1:{
+				$(".skill-level").hide(200,function(){
+					$(".edu-info,.education-title").stop().animate({"height":"0","margin":"0", "padding":"0"},500).promise().then(function(){
+						$("#edu_left_bg").animate({"left":"-300%"},500);
+						$("#edu_right_bg").animate({"right":"-300%"},500,function(){
+							def.resolve(nextIndex);
+						});
+					})
+				})
+				
+			}break;
+			case 2:{
+				def.resolve(nextIndex);
+			}break;
+			case 3:{
+				def.resolve(nextIndex);
+			}break;
+			case 4:{
+				def.resolve(nextIndex);
+			}break;
+			case 5:{
+				def.resolve(nextIndex);
+			}break;
+			case 6:{
+				def.resolve(nextIndex);
+			}break;
+			case 7:{
+				def.resolve(nextIndex);
+			}break;
+			case 8:{
+				def.resolve(nextIndex);
+			}break;
+			case 9:{
+				def.resolve(nextIndex);
+			}break;
+			case 10:{
+				def.resolve(nextIndex);
+			}break;
+			case 11:{
+				def.resolve(nextIndex);
+			}break;
+			default:{
+				def.resolve(nextIndex);
+			}break;
+		}
+
+
+		return def.promise();
+	}
+
+	
+
+	function slideTimeline(index){
+
+		var def = $.Deferred();
+		//时间线向下移动至当前点
+		var timeLine =  index * BALL_DISTANCE + "px";
+		//侧栏响应滚动到对应栏，并且显示标签
+		$("#time_line").animate({ height: timeLine}, 600, function(){
+			$(".side-tag").each(function(){
+				if($(this).index() <= index){
+					$(this).find(".side-tag-dot").css({border:"2px solid #fff", background:"#fff"});
+					if($(this).index() == index){
+						$(this).find(".tag-name").animate({opacity:1, left:"-85px", top:"-7px"});
+					}
+				}else{
+					$(this).find(".side-tag-dot").css({border:"2px solid "+ DOT_COLORS[index], background:"none"});
+				}
+				if($(this).index() != index){
+					$(this).find(".tag-name").animate({opacity:0,left:"-100px", top:"10px"});
+				}
+			});
+
+		})
+		def.resolve(index);
+		return def.promise();
+	}
+	function slidePage(index){  //页面滑动函数
+
+		var def = $.Deferred();
+		$("#main_container").animate({top:-1*index*WIN_HEIGHT+"px"}, 600,function(){
+			// $("#main").css({background:BG_COLORS[index]});
+			//侧栏联系我框变化
+			$("#contact").css({background:SIDE_BG_COLORS[index], "box-shadow":"0 0 5px "+SIDE_SHADOW_COLORS[index], color: FONT_COLORS[index]});
+			$("#contact a").css({color:FONT_COLORS[index]})
+			$("#contact_button").css({background:SIDE_BUTTON_BG_COLORES[index], "box-shadow": "2px 0 3px "+SIDE_SHADOW_COLORS[index]});
+			$(".tag-name").css({background:TAG_COLORS[index]})
+			$(".tag-name-after").css({'border-left':TAG_ARROW_COLORS[index]})
+			def.resolve(index);
+		})
+
 		
+
+		return def.promise();
+	}
+
+	function showCurPage(index){  //页面展示动画
+		// console.log("current page is : " + (index+1) );
+		var def = $.Deferred();
 		
 		
 		switch(index){
-			case 0:{}break;
+			case 0:{def.resolve(index)}break;
 			case 1:{
 				// console.log("PAGE1");
 				//背景从上下两边出现然后划入
-				$("#edu_left_bg").css({"display":"block","left":"-300%"}).stop(true,true).animate({"left":"0"},500,
+				$("#edu_left_bg").css({"display":"block","left":"-300%"}).stop(true,true).animate({"left":"0"},1000,
 					function(){
-					$(".edu-info-left,.education-title-left").stop().animate({"height":"0"},800).animate({"height":"30px","margin":"5px", "padding":"5px 13px"},800,
+					$(".edu-info-left,.education-title-left").stop().animate({"height":"0"},1000).animate({"height":"30px","margin":"5px", "padding":"5px 13px"},1000,
 						function(){
-							$(".skill-level").show(300)
+							$(".skill-level").show(500, function(){def.resolve(index)})
 					})
 				});
-				$("#edu_right_bg").css({"display":"block","right":"-300%"}).stop(true,true).animate({"right":"0"},500,
+				$("#edu_right_bg").css({"display":"block","right":"-300%"}).stop(true,true).animate({"right":"0"},1000,
 					function(){
-					$(".edu-info-right,.education-title-right").stop().animate({"height":"30px","margin":"5px", "padding":"5px 13px"},800)
+					$(".edu-info-right,.education-title-right").stop().animate({"height":"30px","margin":"5px", "padding":"5px 13px"},1000)
 				});
 
 			}break;
-			case 2:{}break;
-			case 3:{}break;
-			case 4:{}break;
-			case 5:{}break;
-			case 6:{}break;
-			case 7:{}break;
-			case 8:{}break;
-			case 9:{}break;
-			case 10:{}break;
-			default:{}break;
+			case 2:{def.resolve(index)}break;
+			case 3:{def.resolve(index)}break;
+			case 4:{def.resolve(index)}break;
+			case 5:{def.resolve(index)}break;
+			case 6:{def.resolve(index)}break;
+			case 7:{def.resolve(index)}break;
+			case 8:{def.resolve(index)}break;
+			case 9:{def.resolve(index)}break;
+			case 10:{def.resolve(index)}break;
+			default:{def.resolve(index)}break;
 		}
-		//重定位PAGE_INDEX
-		PAGE_INDEX = index;
-		isCanMove = true;
+
+		return def.promise();
+		
 	}
-	function resetPage(index){
-		switch(index){
-			case 0 :{}break;
-			case 1:{
-				$(".edu-info,.education-title").stop().animate({"height":"0","margin":"0", "padding":"0"},500,
-					function(){
-						$("#edu_left_bg, #edu_right_bg, .skill-level").css({"display":"none"})
-					})
-			}break;
-			case 2:{}break;
-			case 3:{}break;
-			case 4:{}break;
-			case 5:{}break;
-			case 6:{}break;
-			case 7:{}break;
-			case 8:{}break;
-			case 9:{}break;
-			case 10:{}break;
-			case 11:{}break;
-			default:{}break;
-		}
-	}
+
 </script>
 </html>
