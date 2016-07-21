@@ -5,7 +5,9 @@
 	<meta charset='utf-8'>
 </head>
 <style type="text/css">
-*{margin: 0;}
+*{margin: 0; padding: 0}
+a{text-decoration: none;}
+li{list-style-type: none;}
 #main{width:100%; height: 100%; overflow: hidden; position: relative; background: -webkit-linear-gradient( #336633, #506e72);background: -o-linear-gradient( #336633, #506e72);background: linear-gradient( #336633, #506e72);}
 #main_container{position: absolute; top: 0; left: 0; width: 100%; height: auto;}
 #main .block{width:100%; height:100%; position: relative;}
@@ -15,17 +17,18 @@
 #sidebar::after{content: ''; width: 100%; height: 100%; opacity: 0.5; position: absolute; left: 0; top:0 ; z-index: -1;}
 .side-tag{ margin: 25px auto; position: relative; padding-left: 40px;}
 .side-tag-dot{width: 16px; height: 16px; border-radius: 20px; border: 2px solid #204a22; cursor: pointer;}
-.tag-name{display: block; width: 100px; height:36px; line-height: 35px; font-size: 20px; background: #204a22; border-radius: 4px 0 0 4px; position: absolute; left: -100px; top: 10px; text-decoration: none; color: #fbfbfb; text-align: center; opacity: 0}
+.tag-name{display: block; width: 100px; height:36px; line-height: 35px; font-size: 20px; background: #204a22; border-radius: 4px 0 0 4px; position: absolute; left: -100px; top: 10px; color: #fbfbfb; text-align: center; opacity: 0}
 .tag-name-after{width: 0; height: 0; overflow: hidden;border-right: 18px transparent solid; border-top: 18px transparent solid; border-bottom: 18px solid transparent; border-left: 18px solid #1e4f20; position: absolute; right: -36px; top:0;}
 
 /*contact me*/
 #contact{position: fixed; width: 180px; height: 350px; top: 50%; margin-top: -175px; background:-webkit-linear-gradient(#336633, #4f6d70 70%, #4f6d70); border-radius: 0 5px 0 0; left: -183px; box-shadow: 0 0 5px #eee; color: #85de85; font-size: 18px;}
 #contact_info{margin: 15px;}
 #contact_info p{margin: 5px;}
-#contact_info a{text-decoration: none; color:#85de85;}
+#contact_info a{color:#85de85;}
 #contact_info a:hover{text-decoration: underline;}
 #contact_button{width: 40px; height: 100px; background:#4f6d70; position: absolute; right: -40px; bottom: 0; border-radius: 0 5px 5px 0; padding-top: 10px; box-shadow: 2px 0 3px #eee;}
 #contact_button p{height: 30px; line-height: 30px; text-align: center;}
+
 /*画头像*/
 #head_container{width: 250px; height: 250px; background-color: #126950; position: absolute;top:70px; left:50%; margin-left: -125px; border-radius: 200px;}
 #head_container *{position: absolute;}
@@ -165,6 +168,7 @@
 #hair_content6{transform:rotate(0deg); right: 0px;}
 #hair_6{width: 50px; height: 50px; border-radius: 24px/17px; background-color: #111; top:10px; right: 5px;}
 #hair_6::after{content: ''; display: block; position: absolute; width: 50px; height: 50px; border-radius: 24px/17px; background-color: #126950; top: 0px; right: 2px;}
+
 /*基本个人信息*/
 #basic_info{width: 100%; height: 100px; position: absolute;top:350px;}
 .slide-box{width: 400px; height: 40px;text-align: center; margin: 0 auto 5px; position: relative; color:#111; text-shadow:1px 1px #719671;}
@@ -201,6 +205,7 @@
 @keyframes top-border-out{0%{width: 100%; left:0%;} 100%{width: 0; left:-130%;}}
 @keyframes bottom-border-in{0%{width: 0; left:-200%;} 100%{width: 100%; left:0;}}
 @keyframes bottom-border-out{0%{width: 100%; left:0%;} 100%{width: 0; left:130%;}}*/
+
 /*学历*/
 #edu_left_bg{width: 25%; height: 100%; position: absolute;left: 0; top: 0; opacity: 0.1;background-color: #000; display: none;}
 #edu_left_bg .after{position: absolute; left: 100%; top: 0; display: block; width:0; height: 0;}
@@ -210,9 +215,10 @@
 #education_right{width: 50%; height: 100%; float: right; position: absolute; right:0;}
 #major_info{position: absolute; left: 0; bottom: 55%;}
 #skills_info{position: absolute; right: 0; top:45%; text-align: right; width: 100%;}
-
-.edu-info,.education-title{line-height: 25px; font-size: 20px; color:#eee; position: relative; margin: 0; padding:0; display: inline-block; height: 0; overflow: hidden;}
-.edu-info:after,.education-title:after{content:''; display: block; position: absolute; width: 100%; height: 100%; background: #eee; opacity: 0.2; top:0; left: 0; border-radius: 4px;}
+.edu-info,.education-title{ display: none; position: relative;}
+.edu-info>div,.education-title>div{line-height: 25px; font-size: 20px; color:#eee; position: relative; margin: 0; padding:0; display: inline-block;  padding: 5px 13px; text-align: left;}
+.edu-info>div:after,.education-title>div:after{content:''; display: block; position: absolute; width: 100%; height: 100%; background: #eee; opacity: 0.2; top:0; left: 0; border-radius: 4px;}
+.education-title>div:after{background: -webkit-linear-gradient(#eee, #121212)}
 #cet{left: -60px; top:-60px;}
 #major{left: -100px; top:-60px;}
 #school_edu{left: -140px; top:-60px;}
@@ -233,7 +239,42 @@
 .master{background: -webkit-linear-gradient(#ee3522,#692A23); padding: 3px; border-radius: 3px; font-size: 16px;}
 .acquaintance{background: -webkit-linear-gradient(#f98d3e,#ee3522); padding: 3px; border-radius: 3px; font-size: 16px;}
 .primary{background: -webkit-linear-gradient(#26b655,#887a18); padding: 3px; border-radius: 3px; font-size: 16px;}
-/*#bg-test{background-image:-webkit-linear-gradient(-90deg, #fe6700, #feb544); }*/
+
+/*作品*/
+#wall{width: 100%; height: 100%; position: relative; overflow: hidden; left: -100%;} 
+#wall::before{content: ""; display: block; width: 100%; height: 100%; background: #eee; position: absolute; left: 0; top: 0; opacity: 0.7;}
+#blackboard{position: absolute; left: 10%; top:15%; width: 80%; height: 70%; background: -webkit-repeating-linear-gradient(-90deg, #b1643a 0px, #6c412a 10px , #b1643a 20px);border-radius: 3px; box-shadow: 1px 1px 4px #6c412a;}
+#blackboard_bg:before{content: ''; display: block; position: absolute; width: 100%; height: 90%; top: 5%; left: 0; background: -webkit-repeating-linear-gradient(0deg, #b1643a 0px, #6c412a 10px , #b1643a 20px);}
+#blackboard_bg:after{content: ''; display: block; position: absolute; width: 95%; height: 90%; top: 5%; left: 2.5%; background: -webkit-radial-gradient(#252525, #000); box-shadow: 0 0 8px #777 inset;}
+#works_menu{position: absolute;width: 40%; height: 90%; background: none; left: 2.5%; top:5%;}
+#works_menu_cover{position: absolute; right: 0; bottom:5%; width: 95%; height:90%; overflow: hidden;}
+#works_menu_cover div{position: absolute; bottom:0; background: -webkit-radial-gradient(#252525, #000);}
+#works_menu p{margin: 30px 30px 15px; height: 30px; line-height: 30px; font-family: "楷体"; color: #eee; font-size: 25px;}
+#works_menu li{margin-left: 40px; line-height: 30px;}
+#works_menu a{text-shadow: 1px 1px #94999E; color: #333; font-size: 18px; font-family: "楷体";}
+#works_menu a:visited{text-shadow:#666;}
+#works_menu a:hover{text-shadow:1px 1px #bbb;}
+#works_menu a:active{color:#94999E;}
+
+#projector{width: 55%; height: 90%; position: absolute; left: 42.5%; top:-5%;}
+#projector_top{width: 104%; height: 8%; position: relative; left: -3%; top: -8%; background: -webkit-linear-gradient(#ccc, #e5e5e5, #ccc); border-radius: 8px 0 0 8px / 50%;}
+/*#projector_top:before{content: ''; display: block; position: absolute; width: 30px; height: 100%; left: 0px; border-radius: 8px 0 0 8px / 50%; box-shadow: -1px 1px 4px #222; z-index: 0}*/
+#projector_top:after{content: ''; display: block; width: 10px; height: 100%; position: absolute; right: -5px; top: 0; background: -webkit-repeating-radial-gradient( #999, #ccc 2px); border-radius: 5px / 50%;}
+#projector_bottom{width: 101%; height: 3%; position: relative; left: -1%; top: -8%; background: -webkit-linear-gradient(#333, #ccc, #333); border-radius: 4px 0 0 4px/ 50%; box-shadow: 1px 0 5px #888;}
+#projector_bottom:after{content: ''; display: block; width: 4px; height: 100%; position: absolute; right: -2px; top: 0px; background: -webkit-repeating-radial-gradient( #999, #ccc 2px); border-radius: 2px / 50%;}
+#projector_container{width: 100%; height: 100%; overflow: hidden; position: relative; top: -8%; box-sizing:border-box; border-left: 5px solid #ccc;  border-right: 5px solid #ccc; box-shadow: 1px 0px 10px #999 inset, 0 2px 15px #222; background: -webkit-radial-gradient(#f8f8f8, #ccc); display: none;}
+#projector_container_cover{width: 100%; height: 100%; position: absolute; left: 0; top: 0; box-shadow: 1px 0px 10px #999 inset, 0 2px 15px #222; background: -webkit-radial-gradient(#999, #ccc); opacity: 0; z-index: -1;}
+#work_list{display: block; position: relative; width: 90%; height: 90%; top:5%; left: 5%; overflow:hidden; background: #0D4FA7; opacity: 0;}
+/*#projector ul:before{content: ''; display: block; width: 100%; height: 100%; position: absolute; left: 0; top: 0; background: #eee; opacity: 0;}*/
+.work-piece{width: 100%; height: 100%; display: none; position: absolute; left: 0; top: 0;} 
+/*#work_resume{display: block !important;}*/
+.noise-line{position: absolute; width: 1px; background: #999; opacity: 0.6; box-shadow: 0 0 1px #999;}
+.work-intro>li{list-style:disc inside;}
+
+@keyframes blackboard-in-animation{33.3%{transform:skewX(-15deg);} 60%{transform:skewX(3deg);} 100%{transform:skewX(0deg);}}
+@keyframes blackboard-out-animation{33.3%{transform:skewX(15deg);} 60%{transform:skewX(-3deg);} 100%{transform:skewX(0deg);}}
+@keyframes projector-on{0%{opacity: 0;} 30%{opacity: 0.7} 50%{opacity: 0.65} 70%{opacity: 1} 100%{opacity: 1}}
+
 </style>
 <body>
 	<div id="main">
@@ -506,11 +547,11 @@
 				
 				<div id="education_left">
 					<div id="skills_info">
-						<div class="education-title education-title-left" id="coding_skills">编程能力</div></br>
-						<div id="skill1" class="edu-info edu-info-left">基础能力：<span class="master">HTML + CSS + JavaScript</span></div></br>
-						<div id="skill2" class="edu-info edu-info-left">前端框架：<span class="master">jQuery</span>,<span class="acquaintance">jQuery Mobile</span>,<span class="acquaintance">MUI</span>,<span class="acquaintance">BootStrap</span>,<span class="acquaintance">JADE模板引擎</span></div></br>
-						<div id="skill3" class="edu-info edu-info-left">后台语言：<span class="acquaintance">Node.js</span>,<span class="primary">Python</span>,<span class="primary">JAVA</span></div></br>
-						<div id="skill4" class="edu-info edu-info-left">其他语言：<span class="primary">C语言</span>,<span class="primary">C++</span>,<span class="acquaintance">MySQL</span></div></br>
+						<div class="education-title education-title-left" id="coding_skills"><div>编程能力</div></div>
+						<div id="skill1" class="edu-info edu-info-left"><div>基础能力：<span class="master">HTML + CSS + JavaScript</span></div></div>
+						<div id="skill2" class="edu-info edu-info-left"><div>前端框架：<span class="master">jQuery</span>, <span class="acquaintance">jQuery Mobile</span>, <span class="acquaintance">MUI</span>, <span class="acquaintance">BootStrap</span>, <span class="acquaintance">JADE模板引擎</span></div></div>
+						<div id="skill3" class="edu-info edu-info-left"><div>后台语言：<span class="acquaintance">Node.js</span>, <span class="primary">Python</span>, <span class="primary">JAVA</span></div></div>
+						<div id="skill4" class="edu-info edu-info-left"><div>其他语言：<span class="primary">C语言</span>, <span class="primary">C++</span>, <span class="acquaintance">MySQL</span></div></div>
 						<div class="skill-level">
 							<div class="level-dot" id="level_dot_1"><span>小白</span></div>
 							<div class="level-dot" id="level_dot_2"><span>了解</span></div>
@@ -522,9 +563,9 @@
 				</div>
 				<div id="education_right">
 					<div id="major_info">
-						<div class="education-title education-title-right" id="school_edu">教育背景</div></br>
-						<div id="major" class="edu-info edu-info-right">华中科技大学 数字媒体技术</div></br>
-						<div id="cet" class="edu-info edu-info-right">英语四级：550,英语六级：439</div></br>
+						<div class="education-title education-title-right" id="school_edu"><div>教育背景</div></div>
+						<div id="major" class="edu-info edu-info-right"><div>华中科技大学 数字媒体技术</div></div>
+						<div id="cet" class="edu-info edu-info-right"><div>英语四级：550,英语六级：439</div></div>
 					</div>
 					
 				</div>
@@ -536,7 +577,70 @@
 					<div class="after"></div>
 				</div>	
 			</div>
-			<div class="block">2</div>
+			<div class="block" id="works">
+				<div id="wall">
+					<div id="blackboard">
+						<div id="blackboard_bg"></div>
+						<div id="works_menu">
+							<p>作品简介</p>
+							<ul>
+								<li><a class="work-button" href="javascript:void(0);">我的简历-网页版</a></li>
+								<li><a class="work-button" href="javascript:void(0);">iAlbum在线相册</a></li>
+								<li><a class="work-button" href="javascript:void(0);">2048Web版(响应式布局)</a></li>
+								<li><a class="work-button" href="javascript:void(0);">canvas时钟</a></li>
+								<li><a class="work-button" href="javascript:void(0);">canvas彩球阵倒计时</a></li>
+								<li><a class="work-button" href="javascript:void(0);"> 软件工程教学服务系统</a></li>
+								<li><a class="work-button" href="javascript:void(0);">到我的github上查看更多作品..</a></li>
+							</ul>
+							<div id="works_menu_cover"><div></div></div>
+						</div>
+						<div id="projector">
+							<div id="projector_top"></div>
+							<div id="projector_container">
+								<ul id="work_list">
+									<li class="work-piece" id="work_resume">
+										<p><span class="work-date">2016.07</span><span class="work-title">我的简历-网页版</span><span class="work-type">前端开发</span><span class="project-type">练手项目</span></p>
+										<ul class="work-intro">
+											<li>单文件网页，纯粹由HTML+CSS+JavaScript实现布局</li>
+											<li>引用jQuery</li>
+											<li>无任何外部文件，包括任何图片</li>
+											<li>响应式布局,兼容能够支持CSS3属性的主流浏览器</li>
+										</ul>
+										<div class="see-detail">
+											<a href="#" class="see-it">查看演示</a>
+											<a href="#" class="see-code">查看代码</a>
+										</div>
+									</li>
+									<li class="work-piece" >
+										<p><span class="work-date">2015.06 ~ 2015.07</span><span class="work-title">iAlbum在线相册</span><span class="work-type">前端开发</span><span class="project-type">项目实训</span></p>
+										<ul class="work-intro">
+											<li>使用HTML+CSS+JavaScript搭建网页</li>
+										</ul>
+									</li>
+									<li class="work-piece" >2048Web版(响应式布局)</li>
+									<li class="work-piece" >canvas时钟</li>
+									<li class="work-piece" >canvas彩球阵倒计时</li>
+									<li class="work-piece" >软件工程教学服务系统</li>
+									<div class="noise-line"></div>
+									<div class="noise-line"></div>
+									<div class="noise-line"></div>
+									<div class="noise-line"></div>
+									<div class="noise-line"></div>
+									<div class="noise-line"></div>
+									<div class="noise-line"></div>
+									<div class="noise-line"></div>
+									<div class="noise-line"></div>
+									<div class="noise-line"></div>
+									<div class="noise-line"></div>
+								</ul>
+								<div id="projector_container_cover"></div>
+							</div>
+							<div id="projector_bottom"></div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
 			<div class="block">3</div>
 			<div class="block">4</div>
 			<div class="block">5</div>
@@ -557,7 +661,7 @@
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">3<span class="tag-name-after"></span></span>
+			<span class="tag-name">作品<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
@@ -647,36 +751,50 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 	var TAG_COLORS = ['#204a22','#445e63','#1688ad','#3e5eac','#613fba','#954bb0','#f16c14','#f16c14','#f16c14','#f16c14'];
 	var TAG_ARROW_COLORS = [' 18px solid #1e4f20',	' 18px solid #446066',	' 18px solid #208db0',	' 18px solid #4364b5',	' 18px solid #633dc5',	' 18px solid #9c4bb9',	' 18px solid #e97425',	' 18px solid #e97425',	' 18px solid #e97425',	' 18px solid #e97425',	' 18px solid #e97425'];
 	var DOT_COLORS = ['#204a22','#33393a','#224e66','#424ca1','#682c98','#954bb0','#f16c14','#f16c14','#f16c14','#f16c14'];
-	//侧栏两球间距离
-	var BALL_DISTANCE = 45;
+	
+	var BALL_DISTANCE = 45; //侧栏两球间距离
 	var isCanMove = true;
 	var startY = 0, endY = 0;
 
+	
+	var CURRENT_PPT = 0; //作品展示幻灯片序列
+	
+	var PPT_TIMER; //幻灯片黑线定时器
+
 	// 部分样式初始化
-	$("#edu_left_bg .after").css({"border-left": 0.25*WIN_WIDTH + "px solid #000", "border-top" : 0.5*WIN_HEIGHT +"px solid transparent", "border-right" : 0.25*WIN_WIDTH + "px solid transparent", "border-bottom": 0.5*WIN_HEIGHT + "px solid #000"})
-	$("#edu_right_bg .after").css({"border-left": 0.25*WIN_WIDTH + "px solid transparent", "border-top" : 0.5*WIN_HEIGHT +"px solid #fff", "border-right" : 0.25*WIN_WIDTH + "px solid #fff", "border-bottom": 0.5*WIN_HEIGHT + "px solid transparent"})
+		//每页背景色设置
 	$(".block").each(function(){
 		$(this).css({"background": BG_COLORS[$(this).index()]})
 	})
+		//学历页面背景
+	$("#edu_left_bg .after").css({"border-left": 0.25*WIN_WIDTH + "px solid #000", "border-top" : 0.5*WIN_HEIGHT +"px solid transparent", "border-right" : 0.25*WIN_WIDTH + "px solid transparent", "border-bottom": 0.5*WIN_HEIGHT + "px solid #000"})
+	$("#edu_right_bg .after").css({"border-left": 0.25*WIN_WIDTH + "px solid transparent", "border-top" : 0.5*WIN_HEIGHT +"px solid #fff", "border-right" : 0.25*WIN_WIDTH + "px solid #fff", "border-bottom": 0.5*WIN_HEIGHT + "px solid transparent"})
+		//初始化作品页面黑板的宽高
+	$("#blackboard").height($("#blackboard").width()*0.45)
+		//作品页面menu_cover内容
+	$("#works_menu_cover div").width($("#blackboard").width()*0.95)
+		.height($("#blackboard").height()*0.9)
+		.css({"right":$("#blackboard").width()*-0.55, "bottom":$("#blackboard").height()*0.9*-0.05});
 
 	$(document).ready(function(){
-		//初始化body宽高
+		//初始化
+			//初始化body宽高
 		$(document.body).width(WIN_WIDTH);
 		$(document.body).height(WIN_HEIGHT);
 		$(".block").height(WIN_HEIGHT);
 
-		//初始化时间线（点亮第一个球，显示第一个标签）
+			//初始化时间线（点亮第一个球，显示第一个标签）
 		$(".side-tag-dot:first").css({border:"2px solid #fff", background: "#fff"});
 		$(".tag-name:first").css({opacity:0.8, left: "-85px", top: "-7px"})
 
-		//顶页动画
+			//顶页动画
 		$('#particles').particleground({
 		dotColor: '#5cbdaa',
 		lineColor: '#5cbdaa'
 		});
 
 		//侧栏效果、翻页动画
-		//注意对应当前页面的标签不能动
+			//注意对应当前页面的标签不能动
 		$(".side-tag").hover(function(){
 				$(this).find(".tag-name").stop(true).animate({opacity:0.8, left: "-85px", top: "-7px"});
 				$(this).find(".side-tag-dot").css({border:"2px solid #fff"});			
@@ -696,7 +814,7 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 		})
 
 
-		//判断鼠标滚动
+		//判断鼠标滚动，移动端手指滑动
 	   	var scrollFunc = function (e) {
 	   		if(isCanMove){
 		        var direct = 0;
@@ -768,7 +886,7 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 
 	    //联系方式框
 	    var contactAnimation;
-	    // 此处采用hover函数反而会出错，所以改用mouseover和mouseout
+	    	// 此处采用hover函数反而会出错，所以改用mouseover和mouseout
 	    $("#contact").mouseover(function(){ //鼠标移入
 	    	clearTimeout(contactAnimation);
 	    	$("#contact").stop().animate({left:"0"},400);
@@ -778,175 +896,199 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 		    	$("#contact").stop().animate({left:"-183px"},400);
 		    }, 300)
 	    })
-
-
-	    /* 基本个人信息动画
-		 *鼠标移入，上下左右4条边按逆时针方向移入
-		 *判断鼠标移入方向，选择合适的显示动画（旋转或者翻转）
-
-		 *鼠标移除，上下左右4条边按逆时针方向移出
-		 *判断鼠标移出方向，选择合适的显示动画
-		 */
-		 $(".slide-box").each(function(){
-		 	$(this).hover(function(e){  //划入
-		 		var curObj = $(this)
-		 		var w = $(this).width();
-				var h = $(this).height();
-				var x = (e.pageX - $(this).offset().left - (w / 2)) * (w > h ? (h / w) : 1);
-				var y = (e.pageY - $(this).offset().top - (h / 2)) * (h > w ? (w / h) : 1);
-				var direction = Math.round(((((Math.atan2(y, x) * (180 / Math.PI))) / 90))+5)%4;
-				// 上，右，下，左 --> 0, 1, 2, 3
-				// console.log("direction: "+direction)
-
-				curObj.find(".slide-box-bg").stop(true, true).animate({"opacity":"1"});
-				curObj.css({"color":"#9BB99B","text-shadow":"1px 1px #141B14"});
-				// 边框处理
-
-				// 方案一
-				// // 左边框
-		 	// 	setTimeout(function(){
-		 	// 		curObj.find(".left-border").css({"animation":"left-border-in 1s","opacity":"1"});
-		 	// 	}, ((5+direction)%4)*200);
-		 	// 	// 下边框
-		 	// 	setTimeout(function(){
-		 	// 		curObj.find(".bottom-border").css({"animation":"bottom-border-in 1s","opacity":"1"});
-		 	// 	}, ((6+direction)%4)*200);
-		 	// 	// 右边框
-		 	// 	setTimeout(function(){
-		 	// 		curObj.find(".right-border").css({"animation":"right-border-in 1s","opacity":"1"});
-		 	// 	}, ((7+direction)%4)*200);
-		 	// 	// 上边框
-		 	// 	setTimeout(function(){
-		 	// 		curObj.find(".top-border").css({"animation":"top-border-in 1s","opacity":"1"});
-		 	// 	}, ((8+direction)%4)*200);
-
-				// 方案二
-				// 左边框
-				// clearTimeout(curObj.borderLeftAnimate);
-		 	// 	curObj.borderLeftAnimate = setTimeout(function(){
-		 	// 		curObj.find(".left-border").stop(true).css({"height":"0","top":"-100%"}).animate({"height":"100%","top":"0"});
-		 	// 	}, ((5+direction)%4)*200);
-		 	// 	// 下边框
-				// clearTimeout(curObj.borderBottomAnimate);
-		 	// 	curObj.borderBottomAnimate = setTimeout(function(){
-		 	// 		curObj.find(".bottom-border").stop(true).css({"width":"0","left":"-100%"}).animate({"width":"100%","left":"0"});
-		 	// 	}, ((6+direction)%4)*200);
-		 	// 	// 右边框
-				// clearTimeout(curObj.borderRightAnimate);
-		 	// 	curObj.borderRightAnimate = setTimeout(function(){
-		 	// 		curObj.find(".right-border").stop(true).css({"height":"0", "bottom":"-100%"}).animate({"height":"100%", "bottom":"0"});
-		 	// 	}, ((7+direction)%4)*200);
-		 	// 	// 上边框
-				// clearTimeout(curObj.borderTopAnimate);
-		 	// 	curObj.borderTopAnimate = setTimeout(function(){
-		 	// 		curObj.find(".top-border").stop(true).css({"width":"0","right":"-100%"}).animate({"width":"100%", "right":"0"});
-		 	// 	}, ((8+direction)%4)*200);
-
-		 		// 方案三
-		 		// 左边框
-				curObj.find(".left-border").stop(true, true).css({"height":"0","top":"-100%"}).animate({"height":"0","top":"-100%"}, ((5+direction)%4)*200+1 ,function(){
-						curObj.find(".left-border").animate({"height":"100%","top":"0"}, 200);
-				});
-				// 右边框
-				curObj.find(".right-border").stop(true, true).css({"height":"0","bottom":"-100%"}).animate({"height":"0","bottom":"-100%"}, ((7+direction)%4)*200+1 ,function(){
-						curObj.find(".right-border").animate({"height":"100%","bottom":"0"}, 200);
-				})
-				// 上边框
-				curObj.find(".top-border").stop(true, true).css({"width":"0","right":"-100%"}).animate({"width":"0","right":"-100%"}, ((8+direction)%4)*200+1 ,function(){
-						curObj.find(".top-border").animate({"width":"100%","right":"0"}, 200);
-				})
-				// 下边框
-				curObj.find(".bottom-border").stop(true, true).css({"width":"0","left":"-100%"}).animate({"width":"0","left":"-100%"}, ((6+direction)%4)*200+1 ,function(){
-						curObj.find(".bottom-border").animate({"width":"100%","left":"0"}, 200);
-				})
-
-		 		// 文字动画
-		 		curObj.find(".word-bg").animate({"opacity":"0.8"});
-		 		switch(direction){
-		 			// 0,上边框入
-		 			case 0: {
-		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"downturning 5s"});	
-		 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"leftturning 5s"});	
-		 			}break;
-		 			// 1,右边框入
-		 			case 1: {
-		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"anti-clockwise 5s"});	
-		 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"clockwise 5s"});	
-		 			}break;
-		 			// 2,下边框入
-		 			case 2: {
-		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"upturning 5s"});	
-		 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"rightturning 5s"});	
-		 			}break;
-		 			// 3,左边框入
-		 			case 3: {
-		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"clockwise 5s"});	
-		 				curObj.find(".anti-block-word, .anti-tiny-block-word").css({"animation":""}).css({"animation":"anti-clockwise 5s"});	
-		 			}break;
-		 		}
-		 		
-		 	},function(e){  //划出
-		 		var curObj = $(this)
-		 		var w = $(this).width();
-				var h = $(this).height();
-				var x = (e.pageX - $(this).offset().left - (w / 2)) * (w > h ? (h / w) : 1);
-				var y = (e.pageY - $(this).offset().top - (h / 2)) * (h > w ? (w / h) : 1);
-				var direction = Math.round(((((Math.atan2(y, x) * (180 / Math.PI))) / 90))+5)%4;
-				curObj.find(".slide-box-bg").stop(true, true).animate({"opacity":"0.1"});
-				curObj.css({"color":"#111","text-shadow":"1px 1px #719671"});
-
-				// 左边框
-		 		curObj.find(".left-border").stop(true, true).css({"height":"100%","top":"0"}).animate({"height":"100%","top":"0"}, ((5+direction)%4)*200+1 ,function(){
-						curObj.find(".left-border").animate({"height":"0","top":"200%"}, 200);
-				});
-				// 右边框
-				curObj.find(".right-border").stop(true, true).css({"height":"100%","bottom":"0"}).animate({"height":"100%","bottom":"0"}, ((7+direction)%4)*200+1 ,function(){
-						curObj.find(".right-border").animate({"height":"0","bottom":"200%"}, 200);
-				})
-				// 上边框
-				curObj.find(".top-border").stop(true, true).css({"width":"100%","right":"0"}).animate({"width":"100%","right":"0"}, ((8+direction)%4)*200+1 ,function(){
-						curObj.find(".top-border").animate({"width":"0","right":"200%"}, 200);
-				})
-				// 下边框
-				curObj.find(".bottom-border").stop(true, true).css({"width":"100%","left":"0"}).animate({"width":"100%","left":"0"}, ((6+direction)%4)*200+1 ,function(){
-						curObj.find(".bottom-border").animate({"width":"0","left":"200%"}, 200);
-				})
-
-		 		// 文字动画
-		 		curObj.find(".word-bg").animate({"opacity":"0"});
-		 		switch(direction){
-		 			// 0,上边框出
-		 			case 0: {
-		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"upturning-out 5s"});	
-		 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"rightturning-out 5s"});	
-		 			}break;
-		 			// 1,右边框出
-		 			case 1: {
-		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"clockwise-out 5s"});	
-		 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"anti-clockwise-out 5s"});	
-		 			}break;
-		 			// 2,下边框出
-		 			case 2: {
-		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"downturning-out 5s"});	
-		 				curObj.find(".anti-block-word, .anti-tiny-block-word").css({"animation":""}).css({"animation":"leftturning-out 5s"});	
-		 			}break;
-		 			// 3,左边框出
-		 			case 3: {
-		 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"anti-clockwise-out 5s"});	
-		 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"clockwise-out 5s"});	
-		 			}break;
-		 		}
-
-		 	})
-		 })
 		
 	})
+	
+	/* 基本个人信息动画
+	 *鼠标移入，上下左右4条边按逆时针方向移入
+	 *判断鼠标移入方向，选择合适的显示动画（旋转或者翻转）
 
+	 *鼠标移除，上下左右4条边按逆时针方向移出
+	 *判断鼠标移出方向，选择合适的显示动画
+	 */
+	 $(".slide-box").each(function(){
+	 	$(this).hover(function(e){  //划入
+	 		var curObj = $(this)
+	 		var w = $(this).width();
+			var h = $(this).height();
+			var x = (e.pageX - $(this).offset().left - (w / 2)) * (w > h ? (h / w) : 1);
+			var y = (e.pageY - $(this).offset().top - (h / 2)) * (h > w ? (w / h) : 1);
+			var direction = Math.round(((((Math.atan2(y, x) * (180 / Math.PI))) / 90))+5)%4;
+			// 上，右，下，左 --> 0, 1, 2, 3
+			// console.log("direction: "+direction)
+
+			curObj.find(".slide-box-bg").stop(true, true).animate({"opacity":"1"});
+			curObj.css({"color":"#9BB99B","text-shadow":"1px 1px #141B14"});
+			// 边框处理
+
+			// 方案一
+			// // 左边框
+	 	// 	setTimeout(function(){
+	 	// 		curObj.find(".left-border").css({"animation":"left-border-in 1s","opacity":"1"});
+	 	// 	}, ((5+direction)%4)*200);
+	 	// 	// 下边框
+	 	// 	setTimeout(function(){
+	 	// 		curObj.find(".bottom-border").css({"animation":"bottom-border-in 1s","opacity":"1"});
+	 	// 	}, ((6+direction)%4)*200);
+	 	// 	// 右边框
+	 	// 	setTimeout(function(){
+	 	// 		curObj.find(".right-border").css({"animation":"right-border-in 1s","opacity":"1"});
+	 	// 	}, ((7+direction)%4)*200);
+	 	// 	// 上边框
+	 	// 	setTimeout(function(){
+	 	// 		curObj.find(".top-border").css({"animation":"top-border-in 1s","opacity":"1"});
+	 	// 	}, ((8+direction)%4)*200);
+
+			// 方案二
+			// 左边框
+			// clearTimeout(curObj.borderLeftAnimate);
+	 	// 	curObj.borderLeftAnimate = setTimeout(function(){
+	 	// 		curObj.find(".left-border").stop(true).css({"height":"0","top":"-100%"}).animate({"height":"100%","top":"0"});
+	 	// 	}, ((5+direction)%4)*200);
+	 	// 	// 下边框
+			// clearTimeout(curObj.borderBottomAnimate);
+	 	// 	curObj.borderBottomAnimate = setTimeout(function(){
+	 	// 		curObj.find(".bottom-border").stop(true).css({"width":"0","left":"-100%"}).animate({"width":"100%","left":"0"});
+	 	// 	}, ((6+direction)%4)*200);
+	 	// 	// 右边框
+			// clearTimeout(curObj.borderRightAnimate);
+	 	// 	curObj.borderRightAnimate = setTimeout(function(){
+	 	// 		curObj.find(".right-border").stop(true).css({"height":"0", "bottom":"-100%"}).animate({"height":"100%", "bottom":"0"});
+	 	// 	}, ((7+direction)%4)*200);
+	 	// 	// 上边框
+			// clearTimeout(curObj.borderTopAnimate);
+	 	// 	curObj.borderTopAnimate = setTimeout(function(){
+	 	// 		curObj.find(".top-border").stop(true).css({"width":"0","right":"-100%"}).animate({"width":"100%", "right":"0"});
+	 	// 	}, ((8+direction)%4)*200);
+
+	 		// 方案三
+	 		// 左边框
+			curObj.find(".left-border").stop(true, true).css({"height":"0","top":"-100%"}).animate({"height":"0","top":"-100%"}, ((5+direction)%4)*200+1 ,function(){
+					curObj.find(".left-border").animate({"height":"100%","top":"0"}, 200);
+			});
+			// 右边框
+			curObj.find(".right-border").stop(true, true).css({"height":"0","bottom":"-100%"}).animate({"height":"0","bottom":"-100%"}, ((7+direction)%4)*200+1 ,function(){
+					curObj.find(".right-border").animate({"height":"100%","bottom":"0"}, 200);
+			})
+			// 上边框
+			curObj.find(".top-border").stop(true, true).css({"width":"0","right":"-100%"}).animate({"width":"0","right":"-100%"}, ((8+direction)%4)*200+1 ,function(){
+					curObj.find(".top-border").animate({"width":"100%","right":"0"}, 200);
+			})
+			// 下边框
+			curObj.find(".bottom-border").stop(true, true).css({"width":"0","left":"-100%"}).animate({"width":"0","left":"-100%"}, ((6+direction)%4)*200+1 ,function(){
+					curObj.find(".bottom-border").animate({"width":"100%","left":"0"}, 200);
+			})
+
+	 		// 文字动画
+	 		curObj.find(".word-bg").animate({"opacity":"0.8"});
+	 		switch(direction){
+	 			// 0,上边框入
+	 			case 0: {
+	 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"downturning 5s"});	
+	 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"leftturning 5s"});	
+	 			}break;
+	 			// 1,右边框入
+	 			case 1: {
+	 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"anti-clockwise 5s"});	
+	 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"clockwise 5s"});	
+	 			}break;
+	 			// 2,下边框入
+	 			case 2: {
+	 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"upturning 5s"});	
+	 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"rightturning 5s"});	
+	 			}break;
+	 			// 3,左边框入
+	 			case 3: {
+	 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"clockwise 5s"});	
+	 				curObj.find(".anti-block-word, .anti-tiny-block-word").css({"animation":""}).css({"animation":"anti-clockwise 5s"});	
+	 			}break;
+	 		}
+	 		
+	 	},function(e){  //划出
+	 		var curObj = $(this)
+	 		var w = $(this).width();
+			var h = $(this).height();
+			var x = (e.pageX - $(this).offset().left - (w / 2)) * (w > h ? (h / w) : 1);
+			var y = (e.pageY - $(this).offset().top - (h / 2)) * (h > w ? (w / h) : 1);
+			var direction = Math.round(((((Math.atan2(y, x) * (180 / Math.PI))) / 90))+5)%4;
+			curObj.find(".slide-box-bg").stop(true, true).animate({"opacity":"0.1"});
+			curObj.css({"color":"#111","text-shadow":"1px 1px #719671"});
+
+			// 左边框
+	 		curObj.find(".left-border").stop(true, true).css({"height":"100%","top":"0"}).animate({"height":"100%","top":"0"}, ((5+direction)%4)*200+1 ,function(){
+					curObj.find(".left-border").animate({"height":"0","top":"200%"}, 200);
+			});
+			// 右边框
+			curObj.find(".right-border").stop(true, true).css({"height":"100%","bottom":"0"}).animate({"height":"100%","bottom":"0"}, ((7+direction)%4)*200+1 ,function(){
+					curObj.find(".right-border").animate({"height":"0","bottom":"200%"}, 200);
+			})
+			// 上边框
+			curObj.find(".top-border").stop(true, true).css({"width":"100%","right":"0"}).animate({"width":"100%","right":"0"}, ((8+direction)%4)*200+1 ,function(){
+					curObj.find(".top-border").animate({"width":"0","right":"200%"}, 200);
+			})
+			// 下边框
+			curObj.find(".bottom-border").stop(true, true).css({"width":"100%","left":"0"}).animate({"width":"100%","left":"0"}, ((6+direction)%4)*200+1 ,function(){
+					curObj.find(".bottom-border").animate({"width":"0","left":"200%"}, 200);
+			})
+
+	 		// 文字动画
+	 		curObj.find(".word-bg").animate({"opacity":"0"});
+	 		switch(direction){
+	 			// 0,上边框出
+	 			case 0: {
+	 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"upturning-out 5s"});	
+	 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"rightturning-out 5s"});	
+	 			}break;
+	 			// 1,右边框出
+	 			case 1: {
+	 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"clockwise-out 5s"});	
+	 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"anti-clockwise-out 5s"});	
+	 			}break;
+	 			// 2,下边框出
+	 			case 2: {
+	 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"downturning-out 5s"});	
+	 				curObj.find(".anti-block-word, .anti-tiny-block-word").css({"animation":""}).css({"animation":"leftturning-out 5s"});	
+	 			}break;
+	 			// 3,左边框出
+	 			case 3: {
+	 				curObj.find(".block-word, .tiny-block-word").css({"animation":""}).css({"animation":"anti-clockwise-out 5s"});	
+	 				curObj.find(".anti-block-word").css({"animation":""}).css({"animation":"clockwise-out 5s"});	
+	 			}break;
+	 		}
+
+	 	})
+	 })
+	
+	//作品展示切换
+	// console.log($("#works_menu li").length)
+	$("#works_menu li").each(function(){
+		var targetPPT = $(this).index();
+		
+		$(this).click(function(){
+			if(targetPPT !== $("#works_menu li").length - 1 && targetPPT !== CURRENT_PPT){
+				$("#projector_container_cover").css({"z-index":"1"}).animate({"opacity":1}, 500, function(){
+					$("#projector_container .work-piece").eq(CURRENT_PPT).css({"display":"none"});
+					$("#projector_container .work-piece").eq(targetPPT).css({"display":"block"});
+					$("#projector_container_cover").animate({"opacity":0}, 500,function(){
+						$("#projector_container_cover").css({"z-index":"-1"})
+					});
+					console.log(targetPPT)
+					CURRENT_PPT = targetPPT;		
+				})
+				// console.log(CURRENT_PPT)
+			}
+			else{
+				// console.log("this button is not for animation");
+				return;				
+			}
+		})	
+	})
+	
+	//自定义函数
 	function scrollPage(index){
 		//页面位置滑动到index处
 		isCanMove = false;
 
-		//直接用then出错
 		resetPage(PAGE_INDEX,index)
 			.then(slideTimeline)
 			.then(slidePage)
@@ -956,6 +1098,20 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 				PAGE_INDEX = index;
 				isCanMove = true;
 			})
+			// .then(function(){console.log("画面滑动完了")})
+
+		//错误集锦
+		//-1.
+		//-直接用then出错
+		//- resetPage(PAGE_INDEX,index)
+		//- 	.then(slideTimeline(index))
+		//- 	.then(slidePage(index))
+		//- 	.then(showCurPage(index))
+		//- 	.then(function(index){
+		//- 		//重定位PAGE_INDEX
+		//- 		PAGE_INDEX = index;
+		//- 		isCanMove = true;
+		//-	})
 			// .then(function(){console.log("画面滑动完了")})
 
 		//用when也出错
@@ -970,20 +1126,31 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 		// 			.then(showCurPage(index)
 		// 				.then(function(){console.log("画面滑动完了")})
 		// 				.then(function(){isCanMove = true}))))
-
+		/*
+		 *这里对deferred对象作一个复习
+		 **1.deferred是一个延迟对象，用来进行异步操作，
+		 **2.在jQuery中，通过新建一个deferred对象（var a = $.Deferred()，可以不使用new）,
+		 **3.通过返回a.promise()，将一个promise对象暴露给函数外部，就可以调用then, done, fail, always等方法了。
+		 **4.直接返回a也不是不行，但是这样就可以在外部修改a的状态了（如果要在外部修改那我们还要它干嘛呢，反正我没想到，所以还是不返回a本身的好）
+		 **5.deferred常和$.when())一起使用，$.when用于判断多个异步请求是否同时完成，当且仅当所有的异步状态都完成时，才会执行done/then
+		 **6.$.when()中传的是函数fn()，直接执行fn，然后根据其状态执行下一步；
+		 **7.而then方法传入的只有方法名（即不能带括号，如果带括号了，那么穿进去的函数会立刻执行，并不能起到异步的效果）
+		 **8.当then方法传入的函数需要参数的时候，就需要deferred对象来传递这个参数了，通过a.resolve(data)来将参数暴露出去，传给下一个then中的函数
+		 **9.resolve()方法传出函数的距离只有1，如果中间隔着一个then，那么下一个函数是收不到参数的。
+		 **10.比如：function fn(){var a = $.Deferred(); a.resolve("abc"); return a.promise();}
+		 **		fn().then(function(data){console.log(data)}).then(function(data){console.log(data)})  //结果： "abc", undefined
+		 */
 		
 	}
 	function resetPage(curIndex, nextIndex){  //页面复原函数
 		var def = $.Deferred();
 		switch(curIndex){
-			case 0 :{
+			case 0:{
 				def.resolve(nextIndex)
-				
-
 			}break;
 			case 1:{
 				$(".skill-level").hide(200,function(){
-					$(".edu-info,.education-title").stop().animate({"height":"0","margin":"0", "padding":"0"},500).promise().then(function(){
+					$(".edu-info,.education-title").stop().hide(500).promise().then(function(){
 						$("#edu_left_bg").animate({"left":"-300%"},500);
 						$("#edu_right_bg").animate({"right":"-300%"},500,function(){
 							def.resolve(nextIndex);
@@ -993,38 +1160,29 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 				
 			}break;
 			case 2:{
-				def.resolve(nextIndex);
+				$("#projector_container").slideUp(500, function(){
+					$("#blackboard").css({"animation":"blackboard-out-animation 1500ms"});
+					$("#wall").animate({"left": "-100%"}, 1000,function(){
+						def.resolve(nextIndex);
+					})
+					$("#work_list").css({"animation":"none",});
+					$(".work-piece").eq(CURRENT_PPT).css({"display":"none"});
+					clearInterval(PPT_TIMER);
+				})
+				$("#works_menu_cover").animate({"width":"95%", "height":"90%"},500);
+				$("#work_list").css({"animation":"none","opacity":"0","background":"#0D4FA7"})
+						
 			}break;
-			case 3:{
-				def.resolve(nextIndex);
-			}break;
-			case 4:{
-				def.resolve(nextIndex);
-			}break;
-			case 5:{
-				def.resolve(nextIndex);
-			}break;
-			case 6:{
-				def.resolve(nextIndex);
-			}break;
-			case 7:{
-				def.resolve(nextIndex);
-			}break;
-			case 8:{
-				def.resolve(nextIndex);
-			}break;
-			case 9:{
-				def.resolve(nextIndex);
-			}break;
-			case 10:{
-				def.resolve(nextIndex);
-			}break;
-			case 11:{
-				def.resolve(nextIndex);
-			}break;
-			default:{
-				def.resolve(nextIndex);
-			}break;
+			case 3:{def.resolve(nextIndex);}break;
+			case 4:{def.resolve(nextIndex);}break;
+			case 5:{def.resolve(nextIndex);}break;
+			case 6:{def.resolve(nextIndex);}break;
+			case 7:{def.resolve(nextIndex);}break;
+			case 8:{def.resolve(nextIndex);}break;
+			case 9:{def.resolve(nextIndex);}break;
+			case 10:{def.resolve(nextIndex);}break;
+			case 11:{def.resolve(nextIndex);}break;
+			default:{def.resolve(nextIndex);}break;
 		}
 
 
@@ -1044,7 +1202,7 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 				if($(this).index() <= index){
 					$(this).find(".side-tag-dot").css({border:"2px solid #fff", background:"#fff"});
 					if($(this).index() == index){
-						$(this).find(".tag-name").animate({opacity:1, left:"-85px", top:"-7px"});
+						$(this).find(".tag-name").animate({opacity:0.8, left:"-85px", top:"-7px"});
 					}
 				}else{
 					$(this).find(".side-tag-dot").css({border:"2px solid "+ DOT_COLORS[index], background:"none"});
@@ -1089,18 +1247,38 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 				//背景从上下两边出现然后划入
 				$("#edu_left_bg").css({"display":"block","left":"-300%"}).stop(true,true).animate({"left":"0"},1000,
 					function(){
-					$(".edu-info-left,.education-title-left").stop().animate({"height":"0"},1000).animate({"height":"30px","margin":"5px", "padding":"5px 13px"},1000,
+					$(".edu-info-left,.education-title-left").stop().animate({"margin":"5px"},1000).show(1000,
 						function(){
 							$(".skill-level").show(500, function(){def.resolve(index)})
 					})
 				});
 				$("#edu_right_bg").css({"display":"block","right":"-300%"}).stop(true,true).animate({"right":"0"},1000,
 					function(){
-					$(".edu-info-right,.education-title-right").stop().animate({"height":"30px","margin":"5px", "padding":"5px 13px"},1000)
+					$(".edu-info-right,.education-title-right").stop().animate({"margin":"5px"},100).show(900)
 				});
 
 			}break;
-			case 2:{def.resolve(index)}break;
+			case 2:{
+				clearInterval(PPT_TIMER);
+				$("#blackboard").css({"animation":"blackboard-in-animation 1500ms"});
+				$("#wall").animate({"left":"0"},500);
+				$("#projector_container").animate({"margin":"0"}, 1500).slideDown(500, function(){
+					$("#work_list").css({"animation":"projector-on 3s"}).animate({"padding":"0"}, 2950,function(){
+						$("#work_list").css({"opacity":"1","background":"#eee"});
+						// $("#projector_container_cover").animate({"opacity":1}, 500, function(){
+						// 	$("#projector_container li").eq(0).css({"display":"block"});
+						// 	$("#projector_container_cover").animate({"opacity":0}, 500)	;	
+						// })
+						$("#projector_container .work-piece").eq(CURRENT_PPT).css({"display":"block"});
+						PPT_TIMER = setInterval(function(){
+							noiseLineAnimate();
+						}, 300)
+
+					})
+				});
+				$("#works_menu_cover").animate({"padding":"0"}, 2000).animate({"width":"0", "height":"0"},800)
+				def.resolve(index)
+			}break;
 			case 3:{def.resolve(index)}break;
 			case 4:{def.resolve(index)}break;
 			case 5:{def.resolve(index)}break;
@@ -1114,6 +1292,18 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 
 		return def.promise();
 		
+	}
+
+	function noiseLineAnimate(){
+		// console.log("Math.round(Math.random()*1500)")
+		$(".noise-line").eq(Math.round( $(".noise-line").length * Math.random()) ).stop(true)
+			.css({
+				"left": Math.round(Math.random()*80 + 10) + "%",
+				"top": Math.round(Math.random()*180 - 100) + "%",
+				"height" : Math.round(Math.random()*150 + 20) + "%"
+			}).animate({
+				"top": "+=" + Math.round(Math.random()*100) + "%",
+			}, Math.round(Math.random()*2000),function(){$(this).height(0)})
 	}
 
 </script>
