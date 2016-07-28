@@ -1,0 +1,68 @@
+<html>
+<head>
+	<title>canvas 圆</title>
+	<meta charset='utf-8'>
+	<style type="text/css">
+	#canvas{border: 1px solid #bbb; margin: 30px auto; display: block;}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width='1024' height='768'>
+		当前浏览器不支持Canvas，请更换浏览器之后再试
+	</canvas>
+
+<script type="text/javascript">
+window.onload = function () {
+	var canvas = document.getElementById('canvas');
+
+	if( canvas.getContext("2d") ){
+		var context = canvas.getContext("2d");
+		/*
+		 *画圆函数: arc(
+			centerx,centery,radius,  //圆心，半径
+			staringAngel,endingAngle  //起始圆心角，终点圆心角
+			anticlockwise=[true/false]  //顺时针/逆时针，默认为false，即顺时针
+		 	)
+		 */
+		context.lineWidth = 5;
+		context.strokeStyle = "#058";
+		context.arc( 100, 100, 40, 0,  0.5*Math.PI, true);
+		context.stroke();
+		for( var i = 0; i < 10; i++){
+			context.beginPath();
+			context.arc( 50 + i*100, 160, 40, 0, 2*Math.PI*(i+1)/10)
+			context.closePath();
+
+			context.stroke();
+		}
+		/*
+		 *使用closePath();会使圆弧闭合
+		 */
+		for( var i = 0; i < 10; i++){
+			context.beginPath();
+			context.arc( 50 + i*100, 260, 40, 0, 2*Math.PI*(i+1)/10)
+
+			context.stroke();
+		}
+		/*
+		 *只用beginPath()而不用closePath(),就不会出现圆弧闭合的情况
+		 */
+		context.fillStyle = "#058";
+		for( var i = 0; i < 10; i++){
+			context.beginPath();
+			context.arc( 50 + i*100, 360, 40, 0, 2*Math.PI*(i+1)/10, true);
+			// context.closePath();
+			/*
+			 *当使用fill()时，closePath()有没有都一样，没影响
+			*/
+			context.fill();
+		}
+	}
+	else{
+		alert("当前浏览器不支持Canvas，请更换浏览器之后再试")
+	}
+}
+	
+</script>
+</body>
+</html>
