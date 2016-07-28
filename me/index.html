@@ -292,7 +292,11 @@ li{list-style-type: none;}
 /*#book_left{width: 100%; height: 100%; position: absolute;left: 0; top:0; animation:book-skew 12s; animation-timing-function:ease;}*/
 #book_left{width: 100%; height: 100%; position: absolute;left: 0; top:0;}
 #book_left:before{content: ""; display: block; width: 49%; height: 100%; position: absolute; left: 0; top: 0; background: #1CB17B; border-radius: 8px 3px 3px 8px; box-shadow: -3px 3px 3px #2b2b2b;}
+#left_content,#left_cover_content,#right_content{position: absolute; height: 92%; top:4%; background: #fff;	}
+#left_content{width: 43%; left: 4%; display: none}
+
 #book_right{width: 49%; height: 100%; position: absolute; right: 0; top: 0; background: #1CB17B; border-radius: 3px 8px 8px 3px; box-shadow: 3px 3px 3px #2b2b2b;}
+#right_content{width: 88%; left: 4%; border-radius: 0 5px 5px 0; }
 .ring-holes{ height: 100%; position: absolute;}
 #book_right .ring-holes{width: 4%; left: 5%;}
 #book_left .ring-holes{ width: 2%; left: 44.5%;}
@@ -310,12 +314,36 @@ li{list-style-type: none;}
 /*#book_left_cover{width: 100%; height: 100%; position: absolute; left: 0; top: 0; animation:book-skew 12s; animation-timing-function:ease;}*/
 #book_left_cover_container{width:100%; height: 100%; position: absolute; top:0; transform:rotateY(180deg);}
 #book_left_cover{width: 100%; height: 100%; position: absolute; left: 0; top: 0;}
-#book_left_cover:after{content: ""; display: block; width: 44.5%; height: 100%; position: absolute; left: 0; top: 0; background: #1CB17B; border-radius: 8px 0 0 8px; }
-#book_cover{position: absolute; transform:rotateY(180deg); font-size: 60px; width: 49%; text-align: center; height: 240px; line-height: 60px; top: 50%; margin-top: -120px; color: #1CB17B; text-shadow: 1px 1px #474747, -1px -1px #222; }
+#book_left_cover:before{content: ""; display: block; width: 44.5%; height: 100%; position: absolute; left: 0; top: 0; background: #1CB17B; border-radius: 8px 0 0 8px; }
+#book_cover{position: absolute; transform:rotateY(180deg); font-size: 60px; width: 49%; text-align: center; height: 240px; line-height: 60px; top: 50%; margin-top: -120px; color: #1CB17B; text-shadow: 1px 1px #1A4A39, -1px -1px #2CDE9D; opacity: 0}
+#left_cover_content{width: 40.5%; left: 4%; border-radius: 5px 0 0 5px; display: none;}
+.one-practice{width: 100%; height: 40%; padding: 10% 10% 0;}
 
 @keyframes turn-book{0%{transform:rotateY(180deg) skewY(0deg);} 50%{transform:rotateY(90deg) skewY(9deg);}  100%{transform:rotateY(10deg) skewY(0deg);}}
 @keyframes book-rotate{0%{transform:rotateY(180deg);} 100%{transform:rotateY(0deg);}}
+@keyframes book-rotate-over{0%{transform:rotateY(0deg);} 100%{transform:rotateY(180deg);}}
 @keyframes book-skew{0%{transform: skewY(0deg);} 50%{transform: skewY(9deg);}  100%{transform: skewY(0deg);}}
+@keyframes book-skew-over{0%{transform: skewY(0deg);} 50%{transform: skewY(9deg);}  100%{transform: skewY(0deg);}}
+
+/*自我评价*/
+#self_evaluation .container{position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(255,255,255, 0.1); color: #fff; }
+#merits_n_faults{width: 50%; height: 100%; position: absolute; left: 0; top: 0; overflow: visible;}
+#merits_n_faults p{float: left; width: 30%; height: 80%; text-align: right; font-size: 40px;}
+#merits, #faults{height: 40%; width: 100%; padding-top: 10%; position: relative;}
+#merits ul, #faults ul{width: 60%;  margin-left: 30%; font-family: "黑体","微软雅黑", "Microsoft YAHEI"; font-size: 20px;}
+#merits li, #faults li{list-style: decimal inside; width: 90%; padding: 10px 10px 0; margin-bottom: 20px; line-height: 28px; position: relative;}
+
+
+#hobbies{padding-top: 5%; position: absolute; width: 50%; right: 0}
+#hobbies p{font-size: 40px;}
+#hobbies ul{width: 100%; margin-top: 20%;}
+#hobbies li{display: inline-block; width: 25%; line-height: 28px; font-family: "黑体","微软雅黑", "Microsoft YAHEI"; font-size: 20px; padding: 10px 10px; background: -webkit-linear-gradient(#E857B4, #DC2F9D); border-radius: 6px 6px 6px 0; position: relative; box-shadow: 1px 1px 7px #BF2C8A}
+#hobbies li:after{content: ''; display: block; width: 0; height: 0; position: absolute; left: 0; bottom: -16px; border-top: 8px solid #DC2F9D; border-left: 6px solid #DC2F9D; border-bottom: 8px solid transparent; border-right: 6px solid transparent;}
+#hobbies li span{display: block;}
+.hobby-content{text-align: center;}
+
+@keyframes left-to-right{0%{left: 0;} 100%{left: 50px;}}
+@keyframes up-to-down{0%{top: 0; opacity: 1;} 100%{top: 50px; opacity: 0.5;}}
 </style>
 <body>
 	<div id="main">
@@ -592,7 +620,7 @@ li{list-style-type: none;}
 						<div id="skill1" class="edu-info edu-info-left"><div>基础能力：<span class="master">HTML + CSS + JavaScript</span></div></div>
 						<div id="skill2" class="edu-info edu-info-left"><div>前端框架：<span class="master">jQuery</span>, <span class="acquaintance">jQuery Mobile</span>, <span class="acquaintance">MUI</span>, <span class="acquaintance">BootStrap</span>, <span class="acquaintance">JADE模板引擎</span></div></div>
 						<div id="skill3" class="edu-info edu-info-left"><div>后台语言：<span class="acquaintance">Node.js</span>, <span class="primary">Python</span>, <span class="primary">JAVA</span></div></div>
-						<div id="skill4" class="edu-info edu-info-left"><div>其他语言：<span class="primary">C语言</span>, <span class="primary">C++</span>, <span class="acquaintance">MySQL</span></div></div>
+						<div id="skill4" class="edu-info edu-info-left"><div>其他：<span class="primary">C语言</span>, <span class="primary">C++</span>, <span class="acquaintance">MySQL</span>, <span class="acquaintance">PhotoShop</span></div></div>
 						<div class="skill-level">
 							<div class="level-dot" id="level_dot_1"><span>小白</span></div>
 							<div class="level-dot" id="level_dot_2"><span>了解</span></div>
@@ -644,10 +672,11 @@ li{list-style-type: none;}
 										<p><span class="work-date">2016.07</span><span class="work-title">我的简历-网页版</span><span class="work-type">前端开发</span><span class="project-type">练手项目</span></p>
 										<ul class=
 										"work-intro">
-											<li>个人简历网页版</li>
-											<li>单文件网页，纯粹由HTML+CSS+JavaScript实现布局</li>
-											<li>使用jQuery框架</li>
-											<li>无任何外部文件，包括任何图片</li>
+											<li>个人简历网页版,纯粹由HTML+CSS+JavaScript实现页面布局</li>
+											<li>引用jQuery框架</li>
+											<li>DIV+CSS绘制小黄人头像</li>
+											<li>CSS3+jQuery动画实现老式投影仪效果</li>
+											<li>jQuery动画实现真实翻书效果</li>
 											<li>响应式布局,可以在移动端查看,兼容能够支持CSS3属性的主流浏览器</li>
 										</ul>
 										<div class="see-detail">
@@ -741,7 +770,14 @@ li{list-style-type: none;}
 			</div>
 			<div class="block" id="social_practice">
 				<div id="book">
-					<div id="book_right">
+					<div id="book_right">						
+						<div id="right_content">
+							<div class="one-practice">
+								<p>2012.10 - 2013.07</p>
+								<p>软件学院资助委员会勤工俭学部</p>
+								<p>学生家教团队负责人</p>
+							</div>
+						</div>
 						<div class="ring-holes">
 							<div class="ring-hole ring1"></div>
 							<div class="ring-hole ring2"></div>
@@ -753,6 +789,7 @@ li{list-style-type: none;}
 					</div>
 					<div id="book_left_container">
 						<div id="book_left">
+							<div id="left_content"></div>
 							<div class="ring-holes">
 								<div class="ring-hole ring1"></div>
 								<div class="ring-hole ring2"></div>
@@ -762,6 +799,7 @@ li{list-style-type: none;}
 								<div class="ring-hole ring6"></div>
 							</div>
 						</div>
+						
 					</div>
 					<div id="rings">
 						<div class="ring ring1"></div>
@@ -772,17 +810,62 @@ li{list-style-type: none;}
 						<div class="ring ring6"></div>
 					</div>
 					<div id="book_left_cover_container">
-						<div id="book_left_cover"></div>
-						<div id="book_cover">实</br>践</br>活</br>动</div>
+						<div id="book_left_cover">
+							<div id="book_cover">实</br>践</br>活</br>动</div>
+							<div id="left_cover_content">
+								<div class="one-practice">
+									<p>2012.10 - 2013.07</p>
+									<p>软件学院团学联办公室</p>
+									<p>社会实践部联络人</p>
+								</div>
+								<div class="one-practice">
+									<p>2012.10 - 2013.07</p>
+									<p>软件学团学联社会实践部</p>
+									<p>武汉培智学校合作队伍领队成员</p>
+								</div>
+							</div>
+						</div>				
+
 					</div>
 				</div>
 			</div>
-			<div class="block">4</div>
-			<div class="block">5</div>
-			<div class="block">6</div>
+			<div class="block" id="self_evaluation">
+				<div class="container">
+					<div id="merits_n_faults">
+						<div id="merits">
+							<p>优点：</p>
+							<ul>
+								<li>专业技术扎实，精通HTML+CSS+JavaScript，熟悉各种前端常用框架，对后台开发语言和数据库开发也有一定的了解。</li>
+								<li>自学能力强，对新事物接受能力快</li>
+								<li>富有团队精神，责任心强</li>
+							</ul>
+						</div>
+						<div id="faults">
+							<p>不足：</p>
+							<ul>
+								<li>性格偏内向，不太擅长过多的交际</li>
+								<li>社会经验不足</li>
+								<li>喜欢熬夜</li>
+							</ul>
+						</div>
+					</div>
+					<div id="hobbies">
+						<p>兴趣爱好：</p>
+						<ul>
+							<li><span class="bobby-title">看书：</span><span class="hobby-content">技术类书籍、小说</span></li>
+							<li><span class="bobby-title">音乐：</span><span class="hobby-content">业余吉他玩家</span></li>
+							<li><span class="bobby-title">上网：</span><span class="hobby-content">泡泡编程论坛</span></li>
+						</ul>
+					</div>
+				</div>				
+			</div>
+			<div class="block">
+				
+			</div>
+			<!-- <div class="block">6</div>
 			<div class="block">7</div>
 			<div class="block">8</div>
-			<div class="block">9</div>
+			<div class="block">9</div> -->
 		</div>
 	</div>
 	<!-- 侧面进度条 -->
@@ -800,18 +883,18 @@ li{list-style-type: none;}
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">4<span class="tag-name-after"></span></span>
+			<span class="tag-name">实践<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">5<span class="tag-name-after"></span></span>
+			<span class="tag-name">自我评价<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
 		<div class="side-tag">
-			<span class="tag-name">6<span class="tag-name-after"></span></span>
+			<span class="tag-name">联系我<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
-		<div class="side-tag">
+		<!-- <div class="side-tag">
 			<span class="tag-name">7<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
 		</div>
@@ -826,7 +909,7 @@ li{list-style-type: none;}
 		<div class="side-tag">
 			<span class="tag-name">0<span class="tag-name-after"></span></span>
 			<div class="side-tag-dot"></div>
-		</div>			
+		</div>	 -->		
 		<div id="time_line"></div>
 	</div>
 	<!-- 进度条 end -->
@@ -918,6 +1001,13 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 		$("#book").width(WIN_WIDTH*0.90).height($("#book").width()*0.707).css({"top": (WIN_HEIGHT - $("#book").height())/2, "left": WIN_WIDTH*0.05});
 	}
 	$(".ring-hole").height($(".ring-hole").width()).css("marginTop",($(".ring-hole").height() - $(".ring").height()) * (-0.5) +"px");
+		//自我评价气泡漂移
+	// $("#merits_n_faults").find("li").each(function(){
+	// 	$(this).css({"animation":"left-to-right 3s infinite alternate", "animation-delay": 2*Math.random() + "s"} )
+	// });
+	$("#hobbies").find("li").each(function(){
+		$(this).css({"animation":"up-to-down 2s infinite alternate ease-in-out", "animation-delay": (2*Math.random()) + "s"} )
+	});
 
 	$(document).ready(function(){
 		//初始化
@@ -959,6 +1049,7 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 
 		//判断鼠标滚动，移动端手指滑动
 	   	var scrollFunc = function (e) {
+	   		// console.log($(".side-tag").size())
 	   		if(isCanMove){
 		        var direct = 0;
 		        e = e || window.event;
@@ -1282,8 +1373,7 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 		 **9.resolve()方法传出函数的距离只有1，如果中间隔着一个then，那么下一个函数是收不到参数的。
 		 **10.比如：function fn(){var a = $.Deferred(); a.resolve("abc"); return a.promise();}
 		 **		fn().then(function(data){console.log(data)}).then(function(data){console.log(data)})  //结果： "abc", undefined
-		 */
-		
+		 */		
 	}
 	function resetPage(curIndex, nextIndex){  //页面复原函数
 		var def = $.Deferred();
@@ -1316,7 +1406,20 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 				$("#work_list").css({"animation":"none","opacity":"0","background":"#0D4FA7"})
 						
 			}break;
-			case 3:{def.resolve(nextIndex);}break;
+			case 3:{
+				$("#book_left_container, #book_left_cover_container").css({"transform":"rotateY(180deg)","animation":"book-rotate-over 2s ease-in-out"});
+				$("#book_left, #book_left_cover").css({"animation":"book-skew-over 2s linear"});
+				setTimeout(function(){
+					$("#book_cover").css("display","block");
+					$("#left_content, #left_cover_content").css("display","none");
+				}, 1050);
+				setTimeout(function(){
+					def.resolve(nextIndex);
+				}, 2000);
+				setTimeout(function(){
+					$("#book_cover").css("opacity","0");
+				}, 2500)
+			}break;
 			case 4:{def.resolve(nextIndex);}break;
 			case 5:{def.resolve(nextIndex);}break;
 			case 6:{def.resolve(nextIndex);}break;
@@ -1325,7 +1428,7 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 			case 9:{def.resolve(nextIndex);}break;
 			case 10:{def.resolve(nextIndex);}break;
 			case 11:{def.resolve(nextIndex);}break;
-			default:{def.resolve(nextIndex);}break;
+			default:{def.resolve(nextIndex);}
 		}
 
 
@@ -1339,8 +1442,9 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 		var def = $.Deferred();
 		//时间线向下移动至当前点
 		var timeLine =  index * BALL_DISTANCE + "px";
+		console.log(timeLine)
 		//侧栏响应滚动到对应栏，并且显示标签
-		$("#time_line").animate({ height: timeLine}, 600, function(){
+		$("#time_line").animate({ "height": timeLine}, 600, function(){
 			$(".side-tag").each(function(){
 				if($(this).index() <= index){
 					$(this).find(".side-tag-dot").css({border:"2px solid #fff", background:"#fff"});
@@ -1423,14 +1527,25 @@ function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.reque
 				def.resolve(index)
 			}break;
 			case 3:{
-				$("#book_left_container, #book_left_cover_container").css({"transform":"rotateY(0deg)","animation":"book-rotate 2s ease-in-out"})
-				$("#book_left, #book_left_cover").css({"animation":"book-skew 2s linear"})
+				$("#book_cover").css("opacity","0").animate({"opacity":"1"}, 1000);
+				setTimeout(function(){
+					$("#book_left_container, #book_left_cover_container").css({"transform":"rotateY(0deg)","animation":"book-rotate 2s ease-in-out"});
+					$("#book_left, #book_left_cover").css({"animation":"book-skew 2s linear"});
+				}, 1000);			
 				setTimeout(function(){
 					$("#book_cover").css("display","none");
-				}, 1000);
-				def.resolve(index)
+					$("#left_content, #left_cover_content").css("display","block");
+				}, 2050);
+				setTimeout(function(){
+					def.resolve(index);
+				}, 3000)
 			}break;
-			case 4:{def.resolve(index)}break;
+			case 4:{
+				def.resolve(index)
+				setTimeout(function(){
+					
+				}, 1000)
+			}break;
 			case 5:{def.resolve(index)}break;
 			case 6:{def.resolve(index)}break;
 			case 7:{def.resolve(index)}break;
