@@ -14,13 +14,15 @@ header{height: 60px; background: #333;}
 #nav a:active{ color:#fff;}
 #main{width: 800px; margin: 50px auto;}
 .list{font-size: 20px;}
-.list li{width: 80%; margin: 0 auto 10px; border-radius: 4px; border: 1px solid #999; background: rgba(153,153,153,0.2);}
+.list li{width: 80%; margin: 0 auto 10px; border-radius: 4px; padding: 10px 0; background: rgba(153,153,153,0.2);}
 .list-pic{width: 20%; margin: 1%; float: left;}
-.list-pic img{width: 100%; height: auto; min-height: 20px; *height: 20px; _height:20px;}
-.list-info{width: 75%; margin-left: 22%;}
-.info-title{height: 1.3rem; line-height: 1.3rem; padding: 3px; font-size: 1rem; margin-top: 10px;}
-.info-intro{height: 3rem; line-height: 1rem; font-size: 1rem; overflow: hidden; margin: 10px 0;}
-.list-link{}
+.list-pic img{width: 100%; min-height: 3rem; height: auto; background-color: #999; background-image: url("../images/moren.jpg"); background-size: 26% auto; background-repeat: no-repeat; background-position: center; border-radius: 4px;}
+.list-info{width: 75%; margin-left: 22%; border-radius: 4px;}
+.info-title{height: 1.2rem; line-height: 1.2rem; padding: 3px; font-size: 1.1rem; margin-top: 0.5rem; display: inline-block; border-bottom: 1px solid #bbb; border-right: 1px solid #bbb; border-radius: 0 0 4px 0; background: linear-gradient(#ebebeb, #bbb)}
+.info-intro{box-shadow: 0 0 3px #999; margin: 0.5rem  0.5rem 0.5rem 0;}
+.info-intro-words{height: 2.4rem; line-height: 1.2rem; font-size: 0.9rem; overflow: hidden; position: relative; text-indent: 2rem;}
+.list-link{display: block; text-align: center; margin: 0.5rem;}
+.list-link a{display: inline-block; margin: 0 10%; font-size: 0.7rem; padding: 5px; color: #345}
 .clear{clear:both; width: 0; height: 0; overflow: hidden;}
 
 
