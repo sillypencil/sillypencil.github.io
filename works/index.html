@@ -1,9 +1,82 @@
-<!DOCTYPE html>
+<!DOCTYPE html>	
 <html>
 <head>
-	<meta charset="utf-8">
+	<title>Silly Pencil - 会一点前端的小铅笔</title>
+	<meta charset='utf-8'>
+	<link rel="stylesheet" href="../css/a.css">
 </head>
+
 <body>
-	
+	<header>
+		<a href="#" id="logo">SillyPencil</a>
+		<ul id="nav">
+			<li><a href="https://sillypencil.github.io/me">个人简历</a></li>
+			<li><a href="https://github.com/sillypencil/">github</a></li>
+			<li><a href="https://sillypencil.github.io/works">作品</a></li>
+			<li><a href="https://sillypencil.github.io/blogs">博客</a></li>
+		</ul>
+	</header>
+	<div id="main">
+		<ul class="list" id="all_things">
+			<!-- (li>((.list-pic>img)+(.list-info>.info-title+.info-intro>.info-intro-words+.list-link>a*2)+.clear)) -->
+			<li>
+				<div class="list-pic">
+					<img src="images/works/resume.png" alt="">
+				</div>
+				<div class="list-info">
+					<div class="info-title">我的简历——网页版</div>
+					<div class="info-intro">
+						<div class="info-intro-words">个人简历网页版,纯粹由HTML+CSS+JavaScript实现页面布局</div>
+						<div href="" class="list-link"><a href="https://github.com/sillypencil/sillypencil.github.io/tree/master/me">查看代码</a><a href="https://sillypencil.github.io/me">查看页面</a></div>
+					</div>	
+				</div>
+				<div class="clear"></div>
+			</li>
+			<li>
+				<div class="list-pic"><img src="" alt=""></div>
+				<div class="list-info">
+					<div class="info-title">iAlbum在线相册</div>
+					<div class="info-intro">
+						<div class="info-intro-words"在线相册，可以上传和浏览图片，也可以给别人的图片点赞和评论></div>
+						<div class="list-link"><a href="https://github.com/sillypencil/album">查看代码</a></div>			
+					</div>
+				</div>
+				<div class="clear"></div>
+			</li>
+			<li>
+				<div class="list-pic"><img src="images/works/2048.png" alt=""></div>
+				<div class="list-info">
+					<div class="info-title">2048Web版(响应式布局)</div>
+					<div class="info-intro">
+						<div class="info-intro-words">2048小游戏，通过上下左右四个方向移动，将相邻相同数字合并为一个大数字，出现2048时通关</div>
+						<div class="list-link"><a href="https://sillypencil.github.io/2048/">查看页面</a><a href="https://github.com/sillypencil/sillypencil.github.io/tree/master/2048">查看代码</a></div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</li>
+			<li>
+				<div class="list-pic"><img src="images/works/clock.png" alt=""></div>
+				<div class="list-info">
+					<div class="info-title">canvas时钟</div>
+					<div class="info-intro">
+						<div class="info-intro-words">一个纯前端绘制的圆盘时钟，不使用任何图片，精确显示当前系统时间</div>
+						<div class="list-link"><a href="https://sillypencil.github.io/canvas/%E6%97%B6%E9%92%9F/">查看页面</a><a href="https://github.com/sillypencil/sillypencil.github.io/tree/master/canvas/%E6%97%B6%E9%92%9F">查看代码</a></div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</li>
+			<li>
+				<div class="list-pic"><img src="images/works/counting.png" alt=""></div>
+				<div class="list-info">
+					<div class="info-title">canvas彩球阵倒计时</div>
+					<div class="info-intro">
+						<div class="info-intro-words">一个canvas实现的倒计时显示器，精确到秒</br>数字又点阵组成，每个点为一个球，当数字变化时，组成该数字的球会变成彩色并且向两侧弹射出去</div>
+						<div class="list-link"><a href="https://sillypencil.github.io/canvas/%E5%BD%A9%E7%90%83%E5%80%92%E8%AE%A1%E6%97%B6/">查看页面</a><a href="https://github.com/sillypencil/sillypencil.github.io/tree/master/canvas/%E5%BD%A9%E7%90%83%E5%80%92%E8%AE%A1%E6%97%B6">查看代码</a></div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</li>
+		</ul>
+	</div>
 </body>
-</html>	
+</html>
