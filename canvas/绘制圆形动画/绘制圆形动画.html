@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/canvas.css">
+	<style>
+		#test{background: red;}
+		#testArea{height: 100%;}
+	</style>
+</head>
+<body>
+	<header class="text-center">
+		<div class="title inline-block">
+			canvas画圆动画
+		</div>
+	</header>
+	<div id="mian_content">
+		<canvas id="canvas" width='720' height='720' class="canvas inline-block">
+		当前浏览器不支持Canvas，请更换浏览器之后再试
+		</canvas>
+		<canvas id="canvas2" width='720' height='720' class="canvas inline-block">
+		当前浏览器不支持Canvas，请更换浏览器之后再试
+		</canvas>
+		<canvas id="canvas3" width='720' height='720' class="canvas inline-block">
+		当前浏览器不支持Canvas，请更换浏览器之后再试
+		</canvas>
+		<canvas id="canvas4" width='720' height='720' class="canvas inline-block">
+		当前浏览器不支持Canvas，请更换浏览器之后再试
+		</canvas>
+		<canvas id="canvas5" width='720' height='720' class="canvas inline-block">
+		当前浏览器不支持Canvas，请更换浏览器之后再试
+		</canvas>
+	</div>
+
+
+
+<script src="../windjs/wind-all.js" type="text/javascript"></script>
+<script>
+window.onload = function () {
+	var canvas = document.getElementById('canvas');
+	var canvas2 = document.getElementById('canvas2');
+	var canvas3 = document.getElementById('canvas3');
+	var canvas4 = document.getElementById('canvas4');
+	var canvas5 = document.getElementById('canvas5');
+
+	if( canvas.getContext("2d") ){
+		var cxt1 = canvas.getContext("2d");
+		var cxt2 = canvas2.getContext("2d");
+		var cxt3 = canvas3.getContext("2d");
+		var cxt4 = canvas4.getContext("2d");
+		var cxt5 = canvas5.getContext("2d");
+		cxt1.lineWidth = 2;
+		cxt2.lineWidth = 2;
+		cxt2.lineWidth = 2;
+		cxt4.lineWidth = 2;
+		cxt5.lineWidth = 2;
+		var x = 360, y = 360, r = 200;
+		//标准圆
+		var drawArc1 = function(){
+			cxt1.font="bold 50px Arial";
+			cxt1.fillText("标准圆", 20, 70);
+			cxt1.arc(x, y , r, 0, 2*Math.PI);
+			cxt1.stroke();
+		}
+		//以点画圆
+		var drawArc2 = eval(Wind.compile("async", function(){
+			cxt2.font="bold 50px Arial";
+			cxt2.fillText("笛卡尔坐标点画圆", 20, 70);
+			cxt2.moveTo( x - r, y );
+			for( var i=x-r; i<x+r+1; i++){
+				// cxt2.beginPath();
+				$await(Wind.Async.sleep(10));
+				var tempY = Math.pow( r*r - (x-i)*(x-i), 1/2 );
+				cxt2.lineTo( i, y+tempY );
+				cxt2.stroke();
+			}
+			cxt2.moveTo( x + r, y );
+			for( var i=x+r; i>x-r-1; i--){
+				// cxt2.beginPath();
+				$await(Wind.Async.sleep(10));
+				var tempY = Math.pow( r*r - (x-i)*(x-i), 1/2 );
+				cxt2.lineTo( i, y-tempY );
+				cxt2.stroke();
+			}
+		}));
+		//以极坐标点画圆
+		var drawArc3 = eval(Wind.compile("async", function(){
+			cxt3.font="bold 50px Arial";
+			cxt3.fillText("极坐标点画圆", 20, 70);
+			cxt3.moveTo( x - r, y )
+			for(var i=360; i<1081; i++){
+				// cxt3.beginPath();
+				$await(Wind.Async.sleep(11));
+				var tempX = Math.sin( (i-180)*Math.PI/360 )*r;
+				var tempY = Math.cos( (i-180)*Math.PI/360 )*r;
+				cxt3.lineTo( x-tempX, y-tempY );
+				cxt3.stroke();
+			}
+		}));
+		//以弧度拼接画圆
+		var drawArc4 = eval(Wind.compile("async", function(){
+			cxt4.font="bold 50px Arial";
+			cxt4.fillText("圆弧拼接画圆", 20, 70);
+			for(var i=360; i<1081; i++){
+				cxt4.beginPath();
+				cxt4.arc( x, y, r, i*Math.PI/360, (i+3)*Math.PI/360 );
+				cxt4.stroke();
+				$await(Wind.Async.sleep(11));
+			}
+		}));
+		//以弧度重绘画圆
+		var drawArc5 = eval(Wind.compile("async", function(){
+			// cxt5.arc(x, y, r, Math.PI, 3*Math.PI);
+			// cxt5.stroke();
+			cxt5.font="bold 50px Arial";
+			cxt5.fillText("圆弧重绘画圆", 20, 70);
+			$await(Wind.Async.sleep(11));
+			for(var i=0; i<721; i++){
+				$await(Wind.Async.sleep(11));
+				cxt5.clearRect(150,150,220,220);
+				cxt5.beginPath();
+				var angle = (i*Math.PI/360).toFixed(2);
+				cxt5.fillStyle = "#000";
+				cxt5.arc(x, y, r, 0, angle);
+				// cxt5.clearCanvas(0,0,360,360);
+				cxt5.stroke();			
+			}
+		}));
+
+		drawArc1();
+		drawArc2().start();
+		drawArc3().start();
+		drawArc4().start();
+		drawArc5().start();
+
+
+	}
+	else{
+		alert("当前浏览器不支持Canvas，请更换浏览器之后再试")
+	}
+}
+/*画圆小结
+ *不管用那种方法绘图，都不可避免的出现锯齿的情况
+ *理论上应该是圆弧重绘效果最佳，事实上，不断重绘依然会出现锯齿，即时在最后重绘一个整圆，依然不可避免的出现锯齿（感觉就是canvas偷懒把之前的图又拿出来接着画一样）
+ *优化锯齿的方法：提高画布分辨率，然后通过css将画布设定为原来大小，相当于画个大图再缩小，锯齿就不明显了
+ *疑惑：放大倍数大了之后，再设置样式，感觉锯齿依然存在，反而不如只放大两倍
+ *注意点：使用圆弧重绘时，每次重绘都需要用moveTo()方法定位到起点，不然就很爆炸。
+ */
+</script>
+</body>
+</html>
