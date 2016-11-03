@@ -1,0 +1,251 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>求集合划分</title>
+    <style>
+		pre{
+			margin: 10px 2rem;
+			padding: 10px;
+			white-space: normal;
+			background: #ececec;
+			border-radius: 5px;
+		}
+		p{
+			margin: 0;
+			height: 30px;
+			line-height: 30px;
+			padding: 3px;
+			font-size: 18px;
+			
+		}
+		#result p{
+			border-bottom: 1px solid #fff; 
+		}
+    </style>
+</head>
+<body>
+<header>
+	<p>算法说明：</p>
+	<pre>
+		<p>给定集合，罗列出该集合的所有的划分	</p>
+	</pre>
+</header>
+<div id="main">
+	<div id="inputBox">
+		<label for="addNum">
+			<span>添加数字:</span>
+			<input type="text" id='addNum'>
+		</label>
+		<button id="addBtn">添加集合元素</button>
+		<button id="resetBtn">清空</button>
+		<button id="resolveBtn">分解</button>
+	</div>
+	<pre>
+		<p>
+			<span>当前集合: </span>
+			<span id="curArr"></span>
+		</p>		
+	</pre>
+	<pre id="result">
+		<div><span>结果：</span></div>
+		
+	</pre>
+</div>
+<footer>
+
+</footer>
+<script>
+	var arr 			= [],
+	addBtn 				= document.getElementById('addBtn'),
+	resolveBtn 			= document.getElementById('resolveBtn'),
+	addInput			= document.getElementById('addNum')
+	resetBtn			= document.getElementById('resetBtn'),
+	textContenter 		= document.getElementById('curArr'),
+	resultContainer 	= document.getElementById('result');
+	//添加元素按钮
+	addBtn.onclick		= function(){
+		addNewNum();
+		cleartInputBox();
+		showArr( arr );
+	}
+	//分解按钮
+	resolveBtn.onclick	= function(){
+		var result = resolveArr(arr);
+		showResult(result);
+	}
+	//重置按钮
+	resetBtn.onclick 	= function(){
+		reset();
+		showArr( arr );
+	}
+
+	//添加元素功能
+	function addNewNum(){
+		var num = addInput.value;
+		if( num && arr.indexOf(num) ) arr.push( num );
+	}
+	
+	//重置功能
+	function reset(){
+		arr = [];
+		showArr( arr )
+		resetResult();
+	}
+	//清空输入框
+	function cleartInputBox(){
+		addInput.value = "";
+	}
+
+	//显示集合
+	function showArr( arr ){
+		textContenter.textContent = "{" + arr + "}";
+	}
+
+	//显示结果
+	function showResult(result){
+		resetResult();
+		for( var i=0,l=result.length; i<l; i++ ){
+			putResult( result[i], i );
+		}
+	}
+
+	function resetResult(){
+		var curResults = resultContainer.getElementsByTagName('p');
+		while( curResults && curResults.length ){
+			curResults[0].parentNode.removeChild( curResults[0] );
+		}
+		
+	}
+
+	function putResult( result, n ){
+		var p = document.createElement("p");
+		var resultContext = ( 1 + n) + ": ";
+		for( var i in result ){
+			resultContext += "{" + result[i] + "}";
+			if( i != result.length-1 ){
+				resultContext += ",";
+			}
+		}
+		// resultContext += "}";
+		p.innerHTML = resultContext;
+		resultContainer.appendChild( p );
+	}
+
+	function resolveArr( arr ){
+		var _divideArrToGroups = function( arr, n ){
+			var result = [];
+			//n=1，返回唯一一组结果
+			if( n == 1 ){
+				result[0] = [];
+				result[0].push( arr );
+				return result;
+			}
+			//n=数组长度，返回唯一一组结果
+			var arrLength = arr.length;
+			if( arr.length == n ){
+				result[0] = [];
+				for( num in arr ){
+					result[0][num] = []
+					result[0][num].push( arr[num] );
+				} 
+				return result;
+			}
+			//数组长度大于1，则遍历返回值的第一个元素，再与剩余的数组划分进行拼接
+			arr.sort();
+			var depth = arr.length - n + 1;
+			var fistItemSets = [];
+			var restItemsSets = [];
+			//循环得出所有第一个子集[][]
+			for( var i=1; i<=depth; i++ ){
+				var getFistItemResults = _getFirstResult( arr, i );
+				fistItemSets = fistItemSets.concat( getFistItemResults );
+			}	
+			for( var j=0; j<fistItemSets.length; j++ ){
+				//获取补集
+				restItemsSets[j] = _getComplement( arr, fistItemSets[j] );
+				//获取补集的划分
+				var divideRestItemsResult = _divideArrToGroups( restItemsSets[j], n-1 );
+				for( var k=0, l=divideRestItemsResult.length; k<l; k++ ){
+					var singleResult = divideRestItemsResult[k].slice();
+					singleResult.splice( 0, 0, fistItemSets[j] );
+					result.push( singleResult );
+				}
+			}
+			return result;
+		}
+		var _getComplement = function( arr, subset ){
+			var complementSet = []
+				for( var i in arr ){
+					if( subset.indexOf( arr[i] ) == -1 ) complementSet.push( arr[i] );
+				}
+				return complementSet;
+		}
+
+		var  _getFirstResult = function( arr, n ){
+			var arrLength = arr.length;
+			var result = [];
+			//首先取得子集第0个元素
+			var firstElement = arr[0];
+			//n=1，返回首个元素
+			if( n == 1 ){
+				result[0] = [];
+				result[0].push( firstElement );
+				return result;
+			}
+			//取剩下元素
+			var newArr = arr.slice(1);
+			var restElements = _dfsSets( newArr, n-1 );
+			for( var i=0; i<restElements.length; i++ ){
+				var singleResult = restElements[i].slice();
+				singleResult.splice( 0, 0, firstElement );
+				result.push( singleResult );
+			}
+			return result;
+		}
+
+		var _dfsSets = function( arr, n ){
+			var arrLength = arr.length;
+			var result = []
+			//深度等于1，将数组的每一个元素当做一个子集返回
+			if( n == 1 ){
+				for( num in arr ){
+					var singleResult = [];
+					// singleResult[0] = [];
+					singleResult.push( arr[num] );
+					result.push( singleResult );
+				}
+				return result;
+			}
+			//深度等于数组长度，将整个数组当做一个子集返回
+			if( arrLength == n ){
+				var singleResult = arr.slice();
+				result.push( singleResult );
+				return result;
+			}
+			//深度大于1，并且小于数组长度，拆分成两种情况
+			
+			var fistNum = arr[0];   //第一个元素
+			var restNums = arr.slice();
+			restNums.splice(0,1);		//剩余元素
+			//情况一：子集包含第一个元素，再从剩余元素中选择n-1个元素
+			var resultGroup1 = _dfsSets( restNums, n-1 );
+			for( var i in resultGroup1 ) resultGroup1[i].splice( 0, 0, fistNum );
+			//情况二：子集不包含第一个元素，从剩下元素中选择n个元素
+			var resultGroup2 = _dfsSets( restNums, n );
+
+			result = resultGroup1.concat( resultGroup2 );
+			return result;
+		}
+
+		var result = [];
+		for( var i=1; i<=arr.length; i++ ){
+			var singleResultresultGroup = _divideArrToGroups( arr, i );
+			result = result.concat( singleResultresultGroup );
+		}
+		return result;
+	}	
+
+</script>
+</body>
+</html>
