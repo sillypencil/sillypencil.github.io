@@ -1,0 +1,99 @@
+<html>
+<head>
+	<title>canvas 七巧板</title>
+	<meta charset='utf-8'>
+	<style type="text/css">
+	#canvas{border: 1px solid #bbb; margin: 30px auto; display: block;}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width='1024' height='768'>
+		当前浏览器不支持Canvas，请更换浏览器之后再试
+	</canvas>
+
+<script type="text/javascript">
+window.onload = function () {
+	var canvas = document.getElementById('canvas');
+
+	if( canvas.getContext("2d") ){
+		var context = canvas.getContext("2d");
+		/*
+		 *方形4个顶点分别为(250,0),(750,0),(250,500),(750,500)
+		 *其他会用到的点:(500,250),(625,125),(375,375),(625,325),(500,500)
+		*/
+		context.beginPath();
+		context.moveTo(250,0);
+		context.lineTo(500,250);
+		context.lineTo(250,500);
+		context.lineTo(250,0);
+		context.closePath();
+
+		context.fillStyle = "#62beca";
+		context.fill();
+
+		context.beginPath();
+		context.lineTo(750,0);
+		context.lineTo(500,250);
+		context.lineTo(250,0);
+		context.closePath();
+
+		context.fillStyle = "#cafe64";
+		context.fill();
+
+		context.beginPath();
+		context.moveTo(500,500);
+		context.lineTo(250,500);
+		context.lineTo(375,375);
+		context.lineTo(500,500);
+		context.closePath();
+		
+		context.fillStyle = "#f38ec9";
+		context.fill();
+
+		context.beginPath();
+		context.lineTo(375,375);
+		context.lineTo(500,250);
+		context.lineTo(625,375);
+		context.lineTo(500,500);
+		context.closePath();
+
+		context.fillStyle = "#a395be";
+		context.fill();
+
+		context.beginPath();
+		context.lineTo(750,500);
+		context.lineTo(750,250);
+		context.lineTo(500,500);
+		context.closePath();
+
+		context.fillStyle = "#f3ca24";
+		context.fill();
+
+		context.beginPath();
+		context.moveTo(625,125);
+		context.lineTo(500,250);
+		context.lineTo(625,375);
+		context.lineTo(625,125);
+		context.closePath();
+
+		context.fillStyle = "#f6f617";
+		context.fill();
+
+		context.beginPath();
+		context.lineTo(750,0);
+		context.lineTo(750,250);
+		context.lineTo(625,375);
+		context.lineTo(625,125);
+		context.closePath();
+
+		context.fillStyle = "#ed3c5f";
+		context.fill();
+	}
+	else{
+		alert("当前浏览器不支持Canvas，请更换浏览器之后再试")
+	}
+}
+	
+</script>
+</body>
+</html>

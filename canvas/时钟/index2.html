@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>canvas时钟</title>
+<style>
+canvas{ margin-left:400px; background: #abb7bc;}
+</style>
+</head>
+<canvas id="clock" width="500" height="500">您的浏览器当前版本不支持canvas标签</canvas>
+<script>
+//圆角矩形
+	CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+	if (w < 2 * r) r = w / 2;
+	if (h < 2 * r) r = h / 2;
+	this.beginPath();
+	this.moveTo(x+r, y);
+	this.arcTo(x+w, y, x+w, y+h, r);
+	this.arcTo(x+w, y+h, x, y+h, r);
+	this.arcTo(x, y+h, x, y, r);
+	this.arcTo(x, y, x+w, y, r);
+	// this.arcTo(x+r, y);
+	this.closePath();
+	return this;
+	}
+
+	CanvasRenderingContext2D.prototype.quadraticRoundRect = function( quadras ){
+		if( !quadras || quadras.length <= 1 ) return;
+		this.beginPath();
+		this.moveTo( quadras[0].startX, quadras[0].startY );
+		for( var i=1; i < quadras.length; i++ ){
+			this.lineTo( quadras[i].startX, quadras[i].startY );
+			this.quadraticCurveTo( quadras[i].controllX, quadras[i].controllY, quadras[i].targetX, quadras[i].targetY );
+		}
+		this.closePath();
+		return this;
+	}
+	CanvasRenderingContext2D.prototype.linearGradient = function(){ //arguments: x1, y1, x2, y2, colors...
+		var x1 = arguments[0]=="undefined"? 0: arguments[0],
+			y1 = arguments[1]=="undefined"? 0: arguments[1],
+			x2 = arguments[2]=="undefined"? this.canvas.width: arguments[2],
+			y2 = arguments[3]=="undefined"? this.canvas.height: arguments[3];
+		var linear = this.createLinearGradient( x1, y1, x2, y2 );
+		if( arguments.length <= 4 ) return;
+		if( arguments.length == 5 ){
+			if( typeof arguments[4] == "string" )
+				linear.addColorStop( 0, arguments[4] );
+			else 
+				linear.addColorStop( arguments[4].stop, arguments[4].color );
+		}
+		var colorNum = arguments.length - 4; 
+			if( typeof arguments[4] == "string" )
+				linear.addColorStop( 0, arguments[4] );
+			else 
+				linear.addColorStop( arguments[4].stop, arguments[4].color );
+		for( var i = 1; i < colorNum; i++ ){
+			if( typeof arguments[4] == "string" )
+				linear.addColorStop( i/(colorNum-1), arguments[i+4] );
+			else 
+				linear.addColorStop( arguments[i+4].stop, arguments[i+4].color );
+			
+		}
+		return linear;
+		
+	}
+	CanvasRenderingContext2D.prototype.radialGradient = function(){ //arguments: x1, y1,radiusStart, x2, y2,radiusEnd, colors...
+		var x1 = arguments[0]=="undefined"? 0: arguments[0],
+			y1 = arguments[1]=="undefined"? 0: arguments[1],
+			radiusStart = arguments[2]=="undefined"?1:arguments[2],
+			x2 = arguments[3]=="undefined"? this.canvas.width: arguments[3],
+			y2 = arguments[4]=="undefined"? this.canvas.height: arguments[4],
+			radiusEnd = arguments[5]=="undefined"?1:arguments[5];
+		var radial = this.createRadialGradient( x1, y1, radiusStart,x2, y2, radiusEnd );
+		if( arguments.length <= 6 ) return;
+		if( arguments.length == 7 ){
+			if( typeof arguments[6] == "string" )
+				radial.addColorStop( 0, arguments[6] );
+			else 
+				radial.addColorStop( arguments[6].stop, arguments[6].color );
+		}
+		var colorNum = arguments.length - 6; 
+			if( typeof arguments[6] == "string" )
+				radial.addColorStop( 0, arguments[6] );
+			else 
+				radial.addColorStop( arguments[6].stop, arguments[6].color );
+		for( var i = 1; i < colorNum; i++ ){
+			if( typeof arguments[6] == "string" )
+				radial.addColorStop( i/(colorNum-1), arguments[i+6] );
+			else 
+				radial.addColorStop( arguments[i+6].stop, arguments[i+6].color );
+			
+		}
+		return radial;
+		
+	}
+</script>
+<script>
+	var clock 	= document.getElementById('clock');
+	var cxt 	= clock.getContext("2d");
+
+	var WINDOW_WIDTH 		= 500, //窗口宽度
+		WINDOW_HEIGHT 		= 500, //窗口高度
+		CANVAS_WIDTH 		= 500, //画布宽度
+		CANVAS_HEIGHT		= 500, //画布高度
+		CLOCK_WIDTH 		= 400, //时钟宽度
+		CLOCK_HEIGHT 		= 400, //时钟高度
+		CLOCK_RADIUS 		= 80,  //时钟半径
+		CLOCK_SHADOW_WIDTH 	= CLOCK_WIDTH*1.06, //时钟阴影宽度
+		CLOCK_SHADOW_HEIGHT = CLOCK_HEIGHT*0.2+5, //时钟阴影高度
+		CLOCK_SHADOW_RX 	= CLOCK_RADIUS*1.5,
+		CLOCK_SHADOW_RY 	= CLOCK_RADIUS*0.6,
+		CLOCK_INNER_WIDTH 	= 100,
+		CLOCK_INNER_HEIGHT 	= 100,
+		CLOCK_INNER_RADIUS 	= 60,
+		CLOCK_COLOR 		= cxt.linearGradient((CANVAS_WIDTH-CLOCK_WIDTH)/2,
+												(CANVAS_HEIGHT-CLOCK_HEIGHT)/2,
+												(CANVAS_WIDTH-CLOCK_WIDTH)/2,
+												(CANVAS_HEIGHT+CLOCK_HEIGHT)/2,
+												"rgba(120,120,120,0.65)", "rgba(50,50,50,0.65)"),//表盘颜色
+		CLOCK_SHADOW_COLOR 	= cxt.linearGradient((CANVAS_WIDTH-CLOCK_WIDTH)/2,
+												(CANVAS_HEIGHT+CLOCK_HEIGHT)/2 - CLOCK_SHADOW_HEIGHT + 10,
+												(CANVAS_WIDTH-CLOCK_WIDTH)/2,
+												(CANVAS_HEIGHT+CLOCK_HEIGHT)/2 + 10,
+												{stop:0.3, color:"rgba(0,0,0,0)"},
+												{stop:0.5,color:"rgba(0,0,0,0.08)"},
+												{stop:0.68, color:"rgba(0,0,0,0.2)"},
+												{stop:1, color:"rgba(0,0,0,0.55)"}),
+		CLOCK_SHADOW_SHAPE 	= [{startX: CANVAS_WIDTH/2, startY:(0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT + 3)},
+								{startX: CANVAS_WIDTH/2, startY: (0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT + 3), controllX: 0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH, controllY: (0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT + 3), targetX: 0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH, targetY :(0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - 0.5*CLOCK_SHADOW_HEIGHT + 3)},
+								{startX: 0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH, startY:(0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - 0.5*CLOCK_SHADOW_HEIGHT + 3), controllX: 0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH, controllY: (0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT +3 ), targetX: (0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH - CLOCK_SHADOW_RX), targetY: (0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT + 3)},
+								{startX: (0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH + CLOCK_SHADOW_RX), startY:(0.5*CANVAS_HEIGHT+0.5*CLOCK_HEIGHT+3), controllX:(0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH), controllY:(0.5*CANVAS_HEIGHT+0.5*CLOCK_HEIGHT+3), targetX:(0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH), targetY:(0.5*CANVAS_HEIGHT+0.5*CLOCK_HEIGHT+3 - CLOCK_SHADOW_RY)},
+								{startX:0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH, startY:0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT -CLOCK_SHADOW_HEIGHT + CLOCK_SHADOW_RY, controllX:0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH, controllY:0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT +3, targetX:CANVAS_WIDTH/2, targetY:(0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT + 3)}],
+		CLOCK_INNER_COLOR 	= cxt.radialGradient(CANVAS_WIDTH/2,
+												CANVAS_HEIGHT/2,
+												0,
+												CANVAS_WIDTH/2,
+												CANVAS_HEIGHT/2,
+												CANVAS_WIDTH/2,
+												{stop:0, color:"#333"},
+												{stop:1, color:"#555"}), //表盘内圈颜色
+		DIAL_SIDE_LENGTH	= 320,//表盘边长
+		HOUR_CURVE_START_PLACE = -150,
+		HOUR_CURVE_WIDTH	= 3,
+		HOUR_CURVE_HEIGHT 	= 11,
+		HOUR_TEXT_POSITION 	= -115,
+		HOUR_CURVE_COLOR 	= "#656565",
+		HOUR_TEXT_FONT 		= "25px 黑体 ",
+		HOUR_TEXT_COLOR 	= "#999",
+		HOUR_TEXT_OFFSET_X1 = -7,
+		HOUR_TEXT_OFFSET_X2 = -13,
+		HOUR_TEXT_OFFSET_Y1 = 10,
+		HOUR_TEXT_OFFSET_Y2 = 8,
+		MINUTE_CURVE_START_PLACE = -150,
+		MINUTE_CURVE_WIDTH 	= 2,
+		MINUTE_CURVE_HEIGHT = 5,
+		MINUTE_CURVE_COLOR 	= "#666",
+		HOUR_HAND_LENGTH	= 95, //时针长度
+		HOUR_HAND_WIDTH 	= 10,  //时针宽度
+		HOUR_HAND_CIRCLE	= HOUR_HAND_WIDTH * 1.5, //时针上的圆圈
+		HOUR_HAND_COLOR 	= cxt.linearGradient(-1*HOUR_HAND_WIDTH,
+												0,
+												HOUR_HAND_WIDTH,
+												0,
+												{stop:0.25,color:"#fff"},
+												{stop:0.5,color:"rgba(25,25,25,0.8)"},
+												{stop:0.75,color:"#fff"}) //时针颜色
+		MINUTE_HAND_LENGTH 	= 130,//分针长度
+		MINUTE_HAND_WIDTH 	= 7,  //分针宽度
+		MINUTE_HAND_COLOR 	= cxt.linearGradient(-0.5*MINUTE_HAND_WIDTH,
+												0,
+												0.5*MINUTE_HAND_WIDTH,
+												0,
+												{stop:0,color:"#fff"},
+												{stop:0.5,color:"rgba(25,25,25,0.8)"},
+												{stop:1,color:"#fff"}), //分针颜色
+		SECOND_HAND_LENGTH 	= 183, //秒针长度
+		SECOND_HAND_WIDTH 	= 4,  //秒针宽度
+		SECOND_HAND_CIRCLE  = HOUR_HAND_WIDTH,
+		SECOND_HAND_COLOR 	= "#d73b3b", //秒针颜色
+		HOUR_DEGREE_WIDTH 	= 6,   //时刻度宽度
+		HOUR_DEGREE_LENGTH 	= 18, //时刻度长度
+		SECOND_DEGREE_WIDTH = 3,   // 秒刻度宽度
+		SECOND_DEGREE_LENGTH= 13  //秒刻度长度
+
+	drawClock( cxt );
+	setInterval(function(){
+		drawClock( cxt );
+	}, 10);
+
+	function drawClock( context, styleType ){
+		//清除画布
+		_clearClock();
+		if( styleType ) {
+			//修改样式
+			console.log("请选择样式！");
+		} else { //默认样式
+
+		}
+		var _time = new Date();
+
+		var	_millisec 	= _time.getMilliseconds(),
+			_sec		= _time.getSeconds() + _millisec/1000,
+			_min 		= _time.getMinutes() + Math.round(_sec)/60,
+			_hour 		= _time.getHours() + _sec/60;
+			if( _hour > 12 ) _hour = _hour - 12;
+		_drawClockBackground();
+		_drawHourHand(_hour);
+		_drawMinuteHand(_min);
+		_drawSecondHand(_sec);
+		// context.fillStyle = HOUR_HAND_COLOR;
+		// context.fillRect(0,0,500,500);
+
+		function _clearClock(){
+			context.clearRect( 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT );
+		}
+		function _drawClockBackground(){
+			// context.fillStyle = CLOCK_SHADOW_COLOR;
+			// context.fillRect(0,0,500,500);
+			//画表盘阴影
+			context.fillStyle = CLOCK_SHADOW_COLOR;
+			context.quadraticRoundRect(CLOCK_SHADOW_SHAPE)
+			.fill();
+
+
+			//画表盘
+			context.fillStyle = "rgba(30,30,30,0.6)";
+			context.shadowOffsetY = 0;
+			context.shadowOffsetX = 0;
+			context.shadowBlur = 10;
+			context.shadowColor = "#000";
+			context.roundRect( (CANVAS_WIDTH-CLOCK_WIDTH)/2, (CANVAS_HEIGHT-CLOCK_HEIGHT)/2, CLOCK_WIDTH, CLOCK_HEIGHT, CLOCK_RADIUS ).fill();
+
+			context.fillStyle = CLOCK_COLOR;
+			context.roundRect( (CANVAS_WIDTH-CLOCK_WIDTH)/2+2, (CANVAS_HEIGHT-CLOCK_HEIGHT)/2+1, CLOCK_WIDTH-4, CLOCK_HEIGHT-4, CLOCK_RADIUS-2 ).fill();
+			//表盘内层圆
+			context.beginPath();
+			context.fillStyle = CLOCK_INNER_COLOR;
+			context.shadowColor = null;
+			context.shadowBlur = 0;
+			context.arc( CANVAS_WIDTH/2, CANVAS_HEIGHT/2, CLOCK_INNER_RADIUS, 0, Math.PI*2, true);
+			context.fill();
+			context.closePath();
+
+			//画刻度
+			//时刻度
+			for( var i=0; i<12; i++ ){
+				context.save();
+				context.lineWidth = HOUR_CURVE_WIDTH;
+				context.lineCap="round";
+				context.strokeStyle = HOUR_CURVE_COLOR;
+				context.translate( CANVAS_WIDTH/2, CANVAS_HEIGHT/2 );
+				context.rotate( (i+1)*Math.PI/6 );
+				context.beginPath();
+				context.moveTo( 0, HOUR_CURVE_START_PLACE );
+				context.lineTo( 0, HOUR_CURVE_START_PLACE + HOUR_CURVE_HEIGHT );
+				context.stroke();
+				context.closePath();
+				if( i%3 ==2 ){
+					context.translate(0, HOUR_TEXT_POSITION );
+					context.rotate( -(i+1)*Math.PI/6 );
+					context.beginPath();
+					context.font = HOUR_TEXT_FONT;
+					context.fillStyle = HOUR_TEXT_COLOR;
+					if( i<9 ){//一位数
+						context.fillText( i+1, HOUR_TEXT_OFFSET_X1, HOUR_TEXT_OFFSET_Y1 );
+					} else {//两位数
+						context.fillText( i+1, HOUR_TEXT_OFFSET_X2, HOUR_TEXT_OFFSET_Y2 );
+					}
+
+					context.closePath();
+				}
+				context.restore();
+			}
+
+			//分刻度
+			for( var i=1; i<60; i++ ){
+				if( i%5 != 0 ){
+					context.save();
+					context.translate(CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+					context.rotate( i*Math.PI/30 );
+					context.lineWidth = MINUTE_CURVE_WIDTH;
+					context.lineCap = "round";
+					context.strokeStyle = MINUTE_CURVE_COLOR;
+					context.beginPath();
+					context.moveTo( 0, MINUTE_CURVE_START_PLACE );
+					context.lineTo( 0, MINUTE_CURVE_START_PLACE + MINUTE_CURVE_HEIGHT );
+					context.closePath();
+					context.stroke();
+					context.restore();					
+				}
+			}
+		}/*_drawClockBackground end here*/
+		function _drawHourHand(_hour){
+			_hour = simplify(_hour);
+			var hourAngle = _hour*Math.PI/6
+			context.save();
+			context.translate( CANVAS_WIDTH/2, CANVAS_HEIGHT/2 );
+			context.rotate( hourAngle );
+			context.fillStyle = HOUR_HAND_COLOR;
+			context.beginPath();
+			context.arc( 0,0,HOUR_HAND_WIDTH*1.2, 0, 2*Math.PI, true )		
+			context.closePath();
+			context.fill();
+			context.strokeStyle = HOUR_HAND_COLOR;
+			context.lineWidth = HOUR_HAND_WIDTH;
+			context.lineCap = "round";
+			context.shadowColor = "rgba(0,0,0,0.7)";
+			context.shadowOffsetX = 5;
+			context.shadowOffsetY = 5;
+			context.shadowBlur = 20;
+			context.beginPath();
+			context.moveTo( 0, 0.2*HOUR_HAND_LENGTH );
+			context.lineTo( 0, -0.8*HOUR_HAND_LENGTH );
+			context.stroke();
+			context.restore();
+		}
+		function _drawMinuteHand(_min){
+			_min = simplify( _min );
+			var minAngle = _min*Math.PI/30;
+			context.save();
+			context.translate( CANVAS_WIDTH/2, CANVAS_HEIGHT/2 );
+			context.rotate( minAngle );
+			context.fillStyle = MINUTE_HAND_COLOR;
+			context.strokeStyle = MINUTE_HAND_COLOR;
+			context.lineWidth = MINUTE_HAND_WIDTH;
+			context.lineCap = "round";
+			context.shadowColor = "rgba(0,0,0,0.7)";
+			context.shadowOffsetX = 5;
+			context.shadowOffsetY = 5;
+			context.shadowBlur = 20;
+			context.beginPath();
+			context.beginPath();
+			context.moveTo( 0, 0.22*MINUTE_HAND_LENGTH );
+			context.lineTo( 0, -0.78*MINUTE_HAND_LENGTH );
+			context.stroke();
+			context.restore();
+		}
+		function _drawSecondHand(_sec){
+			_sec = simplify( _sec )
+			var secAngle = _sec*Math.PI/30;
+			context.save();
+			context.translate( CANVAS_WIDTH/2, CANVAS_HEIGHT/2 );
+			context.rotate( secAngle );
+			context.fillStyle = SECOND_HAND_COLOR;
+			context.beginPath();
+			context.arc( 0,0,SECOND_HAND_WIDTH*1.5, 0, 2*Math.PI, true )		
+			context.closePath();
+			context.fill();
+			context.strokeStyle = SECOND_HAND_COLOR;
+			context.lineWidth = SECOND_HAND_WIDTH;
+			context.shadowColor = "rgba(0,0,0,0.5)";
+			context.shadowOffsetX = 5;
+			context.shadowOffsetY = 5;
+			context.shadowBlur = 20;
+			context.beginPath();
+			context.moveTo( 0, 0.22*SECOND_HAND_LENGTH );
+			context.lineTo( 0, -0.78*SECOND_HAND_LENGTH );
+			context.closePath();
+			context.stroke();
+			context.restore();
+		}
+
+		function simplify( num ){
+			return Math.round( num * 100 )/100;
+		}
+	}
+
+</script>
+<body>
+</body>
+</html>

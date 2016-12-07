@@ -1,0 +1,97 @@
+<html>
+<head>
+	<title>canvas 七巧板</title>
+	<meta charset='utf-8'>
+	<style type="text/css">
+	#canvas{border: 1px solid #bbb; margin: 30px auto; display: block;}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width='1024' height='768'>
+		当前浏览器不支持Canvas，请更换浏览器之后再试
+	</canvas>
+
+<script type="text/javascript">
+window.onload = function () {
+	var canvas = document.getElementById('canvas');
+
+	if( canvas.getContext("2d") ){
+		var context = canvas.getContext("2d");
+		/*
+		 *方形4个顶点分别为(250,0),(750,0),(250,500),(750,500)
+		 *其他会用到的点:(500,250),(625,125),(375,375),(625,325),(500,500)
+		*/
+		var tangram = [
+			{p:[{x:250,y:0},
+				{x:500,y:250},
+				{x:250,y:500},
+				{x:250,y:0}],
+			color:"#62beca"},
+
+			{p:[{x:250,y:0},
+				{x:750,y:0},
+				{x:500,y:250},
+				{x:250,y:0}],
+			color:"#cafe64"},
+
+			{p:[{x:250,y:500},
+				{x:500,y:500},
+				{x:375,y:375},
+				{x:250,y:500}],
+			color:"#f38ec9"},
+
+			{p:[{x:375,y:375},
+				{x:500,y:500},
+				{x:625,y:375},
+				{x:500,y:250},
+				{x:375,y:375}],
+			color:"#a395be"},
+
+			{p:[{x:500,y:250},
+				{x:625,y:125},
+				{x:625,y:375},
+				{x:500,y:250}],
+			color:"#f3ca24"},
+
+			{p:[{x:625,y:125},
+				{x:750,y:0},
+				{x:750,y:250},
+				{x:625,y:375},
+				{x:625,y:125}],
+			color:"#f6f617"},
+
+			{p:[{x:500,y:500},
+				{x:750,y:250},
+				{x:750,y:500},
+				{x:500,y:500}],
+			color:"#ed3c5f"}
+		]
+		for(var i = 0; i < tangram.length; i++){
+			draw(tangram[i]);
+		}
+
+		function draw(graphic){
+			context.beginPath();
+			context.moveTo(graphic.p[0].x,graphic.p[0].y);
+			for(var j = 1; j < graphic.p.length; j++){
+				context.lineTo(graphic.p[j].x,graphic.p[j].y);
+			}
+			context.closePath();
+			/*
+			 *小彩蛋！
+			 *先stroke()再fill()和先fill()再stroke()效果不一样！！！
+			*/
+			context.fillStyle = graphic.color;
+			context.fill();
+			context.lineWidth = 2;
+			context.stroke();
+		}
+	}
+	else{
+		alert("当前浏览器不支持Canvas，请更换浏览器之后再试")
+	}
+}
+	
+</script>
+</body>
+</html>
