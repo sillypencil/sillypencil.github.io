@@ -1,8 +1,0 @@
-*{margin: 0; padding: 0;}
-body{height: 100%; background: #ececec; padding-top: 40px;}
-header{display: block;}
-#mian_content{margin: 20px auto; max-width: 1200px;}
-.canvas{width: 360px; height: 360px; margin: 0 auto; background: #fff; display: block;}
-.inline-block{display: inline-block; padding: 0 1rem;}
-.text-center{text-align: center;}
-.title{border-radius: 4px; background: #343434; box-shadow: 0 0 5px #555; line-height: 40px; font-size: 25px; color:#ccc;}
