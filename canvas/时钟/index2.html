@@ -3,11 +3,28 @@
 <head>
 <meta charset="utf-8" />
 <title>canvas时钟</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 <style>
-canvas{ margin-left:400px; background: #abb7bc;}
+canvas{ margin-left:400px; background: #abb7bc; width: 500px; height: 500px;}
+@media screen and (min-width:100px){
+	.canvas-container{
+		width: 90%;
+		height: auto;
+		margin: 2rem auto;
+	}
+	canvas{
+		width: 100%;
+		height: calc( 100% );
+		margin: 2rem auto;
+	}
+}
+
 </style>
 </head>
-<canvas id="clock" width="500" height="500">您的浏览器当前版本不支持canvas标签</canvas>
+<body>
+<div class="canvas-container">
+	<canvas id="clock">您的浏览器当前版本不支持canvas标签</canvas>
+</div>	
 <script>
 //圆角矩形
 	CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
@@ -182,6 +199,8 @@ canvas{ margin-left:400px; background: #abb7bc;}
 		SECOND_DEGREE_WIDTH = 3,   // 秒刻度宽度
 		SECOND_DEGREE_LENGTH= 13  //秒刻度长度
 
+	clock.width = CANVAS_WIDTH;
+	clock.height = CANVAS_HEIGHT;
 	drawClock( cxt );
 	setInterval(function(){
 		drawClock( cxt );
@@ -366,6 +385,5 @@ canvas{ margin-left:400px; background: #abb7bc;}
 	}
 
 </script>
-<body>
 </body>
 </html>
