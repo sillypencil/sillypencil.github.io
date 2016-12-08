@@ -127,10 +127,10 @@ canvas{ background: #abb7bc; width: 500px; height: 500px;}
 		CLOCK_WIDTH 		= 400, //时钟宽度
 		CLOCK_HEIGHT 		= 400, //时钟高度
 		CLOCK_RADIUS 		= 80,  //时钟半径
-		CLOCK_SHADOW_WIDTH 	= CLOCK_WIDTH*1.06, //时钟阴影宽度
-		CLOCK_SHADOW_HEIGHT = CLOCK_HEIGHT*0.2+5, //时钟阴影高度
-		CLOCK_SHADOW_RX 	= CLOCK_RADIUS*1.5,
-		CLOCK_SHADOW_RY 	= CLOCK_RADIUS*0.6,
+		CLOCK_SHADOW_WIDTH 	= CANVAS_WIDTH*0.98, //时钟阴影宽度
+		CLOCK_SHADOW_HEIGHT = CLOCK_HEIGHT*0.3+5, //时钟阴影高度
+		CLOCK_SHADOW_RX 	= CLOCK_RADIUS*2.20,
+		CLOCK_SHADOW_RY 	= CLOCK_RADIUS*1,
 		CLOCK_INNER_WIDTH 	= 100,
 		CLOCK_INNER_HEIGHT 	= 100,
 		CLOCK_INNER_RADIUS 	= 60,
@@ -143,15 +143,15 @@ canvas{ background: #abb7bc; width: 500px; height: 500px;}
 												(CANVAS_HEIGHT+CLOCK_HEIGHT)/2 - CLOCK_SHADOW_HEIGHT + 10,
 												(CANVAS_WIDTH-CLOCK_WIDTH)/2,
 												(CANVAS_HEIGHT+CLOCK_HEIGHT)/2 + 10,
-												{stop:0.3, color:"rgba(0,0,0,0)"},
-												{stop:0.5,color:"rgba(0,0,0,0.08)"},
-												{stop:0.68, color:"rgba(0,0,0,0.2)"},
-												{stop:1, color:"rgba(0,0,0,0.55)"}),
+												{stop:0.5, color:"rgba(0,0,0,0)"},
+												{stop:0.68,color:"rgba(0,0,0,0.04)"},
+												{stop:0.77, color:"rgba(0,0,0,0.18)"},
+												{stop:1, color:"rgba(0,0,0,0.88)"}),
 		CLOCK_SHADOW_SHAPE 	= [{startX: CANVAS_WIDTH/2, startY:(0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT + 3)},
-								{startX: CANVAS_WIDTH/2, startY: (0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT + 3), controllX: 0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH, controllY: (0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT + 3), targetX: 0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH, targetY :(0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - 0.5*CLOCK_SHADOW_HEIGHT + 3)},
-								{startX: 0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH, startY:(0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - 0.5*CLOCK_SHADOW_HEIGHT + 3), controllX: 0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH, controllY: (0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT +3 ), targetX: (0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH - CLOCK_SHADOW_RX), targetY: (0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT + 3)},
-								{startX: (0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH + CLOCK_SHADOW_RX), startY:(0.5*CANVAS_HEIGHT+0.5*CLOCK_HEIGHT+3), controllX:(0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH), controllY:(0.5*CANVAS_HEIGHT+0.5*CLOCK_HEIGHT+3), targetX:(0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH), targetY:(0.5*CANVAS_HEIGHT+0.5*CLOCK_HEIGHT+3 - CLOCK_SHADOW_RY)},
-								{startX:0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH, startY:0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT -CLOCK_SHADOW_HEIGHT + CLOCK_SHADOW_RY, controllX:0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH, controllY:0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT +3, targetX:CANVAS_WIDTH/2, targetY:(0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT + 3)}],
+								{startX: CANVAS_WIDTH/2, startY: (0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT + 3), controllX: 0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH, controllY: (0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT + 3), targetX: 0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH, targetY :(0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_RY + 3)},
+								{startX: 0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH, startY:(0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_RY + 3), controllX: 0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH, controllY: (0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT +3 ), targetX: (0.5*CANVAS_WIDTH + 0.5*CLOCK_SHADOW_WIDTH - CLOCK_SHADOW_RX), targetY: (0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT + 3)},
+								{startX: (0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH + CLOCK_SHADOW_RX), startY:(0.5*CANVAS_HEIGHT+0.5*CLOCK_HEIGHT+3), controllX:(0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH), controllY:(0.5*CANVAS_HEIGHT+0.5*CLOCK_HEIGHT+3), targetX:(0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH), targetY:(0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_RY + 3)},
+								{startX:0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH, startY:0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_RY, controllX:0.5*CANVAS_WIDTH - 0.5*CLOCK_SHADOW_WIDTH, controllY:0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT +3, targetX:CANVAS_WIDTH/2, targetY:(0.5*CANVAS_HEIGHT + 0.5*CLOCK_HEIGHT - CLOCK_SHADOW_HEIGHT + 3)}],
 		CLOCK_INNER_COLOR 	= cxt.radialGradient(CANVAS_WIDTH/2,
 												CANVAS_HEIGHT/2,
 												0,
@@ -183,18 +183,25 @@ canvas{ background: #abb7bc; width: 500px; height: 500px;}
 												0,
 												HOUR_HAND_WIDTH,
 												0,
-												{stop:0.25,color:"#fff"},
-												{stop:0.5,color:"rgba(25,25,25,0.8)"},
-												{stop:0.75,color:"#fff"}) //时针颜色
+												// {stop:0.25,color:"#fff"},
+												// {stop:0.5,color:"rgba(25,25,25,0.8)"},
+												// {stop:0.75,color:"#fff"}) //时针颜色
+												{stop:0, color:"rgba(120,120,120,0.8)"},
+												{stop:0.44,color:"rgba(35,35,35,0.8)"},
+												{stop:0.5,color:"rgba(255,255,255,0.8)"},
+												{stop:0.56,color:"rgba(35,35,35,0.8)"},
+												{stop:1, color:"rgba(120,120,120,0.8)"}) 
 		MINUTE_HAND_LENGTH 	= 130,//分针长度
 		MINUTE_HAND_WIDTH 	= 7,  //分针宽度
 		MINUTE_HAND_COLOR 	= cxt.linearGradient(-0.5*MINUTE_HAND_WIDTH,
 												0,
 												0.5*MINUTE_HAND_WIDTH,
 												0,
-												{stop:0,color:"#fff"},
-												{stop:0.5,color:"rgba(25,25,25,0.8)"},
-												{stop:1,color:"#fff"}), //分针颜色
+												{stop:0.1, color:"rgba(65,65,65,0.8)"},
+												{stop:0.35,color:"rgba(35,35,35,0.8)"},
+												{stop:0.5,color:"rgba(250,250,250,0.8)"},
+												{stop:0.65,color:"rgba(35,35,35,0.8)"},
+												{stop:0.9, color:"rgba(65,65,65,0.8)"}), //分针颜色
 		SECOND_HAND_LENGTH 	= 183, //秒针长度
 		SECOND_HAND_WIDTH 	= 4,  //秒针宽度
 		SECOND_HAND_CIRCLE  = HOUR_HAND_WIDTH,
@@ -231,8 +238,6 @@ canvas{ background: #abb7bc; width: 500px; height: 500px;}
 		_drawHourHand(_hour);
 		_drawMinuteHand(_min);
 		_drawSecondHand(_sec);
-		// context.fillStyle = HOUR_HAND_COLOR;
-		// context.fillRect(0,0,500,500);
 
 		function _clearClock(){
 			context.clearRect( 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT );
@@ -242,8 +247,15 @@ canvas{ background: #abb7bc; width: 500px; height: 500px;}
 			// context.fillRect(0,0,500,500);
 			//画表盘阴影
 			context.fillStyle = CLOCK_SHADOW_COLOR;
+			// context.fillStyle = "rgba(0,0,0,0)";
+			context.shadowBlur = 5;
+			context.shadowOffsetX = 0;
+			context.shadowOffsetY = 4;
+			context.shadowColor = "#000";
+			context.strokeStyle = "rgba(0,0,0,0)";
 			context.quadraticRoundRect(CLOCK_SHADOW_SHAPE)
 			.fill();
+			context.stroke();
 
 
 			//画表盘
