@@ -201,7 +201,7 @@ canvas{ margin-left:400px; background: #abb7bc;}
 		var	_millisec 	= _time.getMilliseconds(),
 			_sec		= _time.getSeconds() + _millisec/1000,
 			_min 		= _time.getMinutes() + Math.round(_sec)/60,
-			_hour 		= _time.getHours() + _sec/60;
+			_hour 		= _time.getHours() + Math.round(_min)/60;
 			if( _hour > 12 ) _hour = _hour - 12;
 		_drawClockBackground();
 		_drawHourHand(_hour);
