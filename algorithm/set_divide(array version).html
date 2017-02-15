@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>求集合划分</title>
+    <title>求集合划分(使用数组实现)</title>
     <style>
 		pre{
 			margin: 10px 2rem;
@@ -120,13 +120,13 @@
 
 	function putResult( result, n ){
 		var p = document.createElement("p");
-		var resultContext = ( 1 + n) + ": ";
-		for( var i in result ){
-			resultContext += "{" + result[i] + "}";
-			if( i != result.length-1 ){
-				resultContext += ",";
-			}
-		}
+		var resultContext = ( 1 + n) + ": {" + result + "}";
+		// for( var i in result ){
+		// 	resultContext += "{" + result[i] + "}";
+		// 	if( i != result.length-1 ){
+		// 		resultContext += ",";
+		// 	}
+		// }
 		// resultContext += "}";
 		p.innerHTML = resultContext;
 		resultContainer.appendChild( p );

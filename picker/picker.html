@@ -1,0 +1,154 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8">
+<title>picker</title>
+<style>
+pre{
+	margin: 10px 2rem;
+	padding: 10px;
+	white-space: normal;
+	background: #ececec;
+	border-radius: 5px;
+}
+p{
+	margin: 0;
+	height: 30px;
+	line-height: 30px;
+	padding: 3px;
+	font-size: 18px;
+	
+}
+#container{
+    width: 50px;
+    height: 100px;
+	margin: auto;
+    background: #eee;
+    border-radius: 16px;
+}
+/* ul{
+	padding: 0;
+    position: relative;
+    height: 221px;
+    width: 100%;
+    list-style: none;
+    perspective: 9999px;
+    perspective-origin: 50% 50%;
+    transform-style: preserve-3d;
+}
+li{
+	display: block;
+    background: #fff;
+    width: 30px;
+    perspective: 50px;
+    text-align: center;
+    left: 80px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    top: 85px;
+} */
+.list{
+	display: block;
+    background: #eee;
+    width: 30px;
+    perspective: 50px;
+    text-align: center;
+    /*left: 80px;*/
+    height: 30px;
+    /*line-height: 30px;*/
+    position: absolute;
+/*    top: 85px;*/
+}
+.list span{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: #999;
+}
+</style>
+</head>
+<body>
+<header>
+	<p>例子说明：</p>
+	<pre>
+		<p>滚动数字选择器</p>
+	</pre>
+</header>
+<div id="main">
+	<div id="container">
+		<!-- <ul>
+			<li class="list">0</li>
+			<li class="list">1</li>
+			<li class="list">2</li>
+			<li class="list">3</li>
+			<li class="list">4</li>
+			<li class="list">5</li>
+			<li class="list">6</li>
+			<li class="list">7</li>
+			<li class="list">8</li>
+			<li class="list">9</li>
+		</ul> -->
+	</div>
+</div>
+<footer>
+
+</footer>
+<script src="../js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	let container = $("#container");
+	let listLength = 10;
+	container.height(container.height()===0?100:container.height())
+	let containerWidth = container.width()===0?50:container.width();
+	let containerHeight = container.height()*0.9;
+	let circleRadius = containerHeight/2;
+	let angle = Math.PI/listLength;
+	let translateZ = circleRadius*Math.cos( angle );
+	let itemHeight = circleRadius*Math.sin( angle )*2;
+	
+	let newUl = $("<ul />").css({
+		"padding": 0,
+	    "position": "relative",
+	    "height": container.height()+"px",
+	    "width": "100%",
+	    "list-style": "none",
+	    "perspective": "9999px",
+	    "perspective-origin": "50% 50%",
+	    "transform-style": "preserve-3d",
+	    "margin":0,
+	    "transition": "1s"
+	});
+	for( let j=0; j<listLength; j++ ){
+		let newLi = $("<li />", {
+			class: "list"
+		}).css({
+			"transform": "rotateX(-"+ j*angle*360/Math.PI +"deg) translateZ("+ Math.ceil(circleRadius) +"px)",
+			"height": (Math.ceil(itemHeight)+3) + "px",
+			"width": (Math.ceil(itemHeight)+3) + "px",
+			"line-height": itemHeight + "px",
+			"top": (container.height() - itemHeight)/2 + "px",
+			"left":  (containerWidth - (Math.ceil(itemHeight)+3))/2 + "px",
+			
+		}).append($("<span />",{
+			text: j
+		}));
+		newUl.append( newLi );
+	}
+	container.append( newUl );
+
+	/*$(".list").each(function(){
+		let i = $(this).index();
+		$(this).css({
+			"transform":"rotateX(-"+ i*36 +"deg) translateZ(80px)"
+		});
+	});*/
+});
+	$("#container").on("click",".list",function(){console.dir($(this))})
+</script>
+<script>
+
+</script>
+</body>
+</html>

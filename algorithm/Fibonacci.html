@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>斐波那契数列（非递归解法）</title>
+<meta charset="utf-8" />
+</head>
+<body>
+	<p>两个方法，输出数列，求数列第N个</p>
+
+<script>
+function fibonacci(n){
+	var result = [];
+	for( var i=1; i<n+1; i++ ){
+		if( i == 1 || i == 2 ) result.push(1);
+		else{
+			var num = result[i-2] + result[i-3]
+			result.push( num );
+		}
+	}
+	return result;
+}
+
+function getFibN(n){
+	if( n ==1 || n == 2) return 1;
+  
+	var a=1, b=1, result;
+		for( var i=3; i<n+1; i++ ){
+			result = a+b;
+			if( i==n ) return result;
+			a = b;
+			b = result;
+	}
+}
+</script>	
+</body>
+</html>
