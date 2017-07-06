@@ -1,0 +1,142 @@
+<! DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <style>
+        body{
+            width: 100%;
+            height:100%;
+            margin:0;
+            padding:0;
+        }
+        #map{
+            width: 100%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map">
+
+    </div>
+    <script src="../frameworks/jquery/jquery.min.js"></script>
+    <script src="../frameworks/echarts-3.4.0/echarts.min.js"></script>
+    <script src="../js/guangzhou.min.js"></script>
+    <script>
+        var seriesTemplate = {
+            name : "第一天",
+            type: "scatter",
+            coordinateSystem: 'geo',
+            symbol: "pin",
+            symbolSize:function(value, paramas){
+                return 30;
+            },
+            roam: true,
+            itemStyle:{
+                normal:{},
+                emphasis:{
+                }
+            },
+            data:[],
+            selectedMode : 'multiple',
+            label: {
+                normal: {
+//                    show: true
+                },
+                emphasis: {
+//                    show: true
+                }
+            },
+        };
+        var places = {
+            "地点名": {
+                name: "地点名",
+                data: [23.0,113.0,0],
+                intro: ""
+            }
+        }
+        var optionData = {
+            "第一天": [],
+            "第二天": [],
+            "第三天": [],
+            "第四天": [],
+            "第五天": [],
+            "第六天": [],
+            "第七天": [],
+            "第八天": [],
+            "第九天": [],
+        }
+    </script>
+    <script>
+        var map = echarts.init($("#map")[0]);
+        var option = {
+            title: {
+                text:"铅笔与小二的广州游玩计划"
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function (params) {
+                    return showDotInfo(params.name);
+                }
+            },
+            color:["#00b050", "#ed7d31", "#E85F72","#5383C3","#EABC03","#61CC7C","#99ffff","#ccff00", "#663366"],
+            legend: {
+                orient: 'vertical',
+                right:10,
+                bottom:20,
+                data:["第一天","第二天", "第三天","第四天","第五天","第六天","第七天","第八天","第九天"],
+                textStyle: {
+// 	            color: '#fff'
+                }
+            },
+            geo: {
+                map: 'guangzhou',
+                roam: true,
+                label: {
+                    normal:{
+                        show: true
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        areaColor: '#90dde5',
+                        borderColor: '#ffffff'
+                    },
+                    emphasis: {
+                        areaColor: '#a4f5fd'
+                    }
+                }
+            },
+            series:[]
+        }
+        for( var i in optionData ){
+            var s = clone( seriesTemplate );
+            s.name = i;
+            for( var j in optionData[i] ){
+                var d = {
+                    name: optionData[i][j].name,
+                    value: optionData[i][j].value
+                }
+                s.data.push( d );
+            }
+            option.series.push(s);
+        }
+
+        map.setOption( option );
+
+        function showDotInfo( name ){
+
+            return null;
+        }
+
+        function clone(obj){
+            return JSON.parse(JSON.stringify( obj ))
+        }
+    </script>
+</body>
+</html>
